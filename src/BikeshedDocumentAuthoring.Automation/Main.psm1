@@ -27,10 +27,6 @@ function New-GitHubBuildReport() {
         [Parameter(Mandatory = $true)]
         [string]$oldHtmlUrl,
 
-        # Text to identify the version of the output (e.g. commit ID)
-        [Parameter(Mandatory = $true)]
-        [string]$version,
-
         [Parameter(Mandatory = $true)]
         [string]$authorizationToken
     )
@@ -41,7 +37,7 @@ function New-GitHubBuildReport() {
     $encodedOldHtmlUrl = [Uri]::EscapeDataString($oldHtmlUrl)
     $diffUrl = "https://services.w3.org/htmldiff?doc1=$encodedOldHtmlUrl&doc2=$encodedHtmlUrl"
 
-    $body += "Output from successful build ($version):`r`n`r`n"
+    $body += "Output from successful build:`r`n`r`n"
     $body += "* [PDF document]($pdfUrl)`r`n"
     $body += "* [HTML document]($htmlUrl)`r`n"
     $body += "* [HTML diff with target branch]($diffUrl)"
