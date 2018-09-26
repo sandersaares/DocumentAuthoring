@@ -7,10 +7,10 @@ function New-GitHubBuildReport() {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
-        [int]$organization,
+        [string]$organization,
 
         [Parameter(Mandatory = $true)]
-        [int]$repository,
+        [string]$repository,
 
         [Parameter(Mandatory = $true)]
         [int]$issueNumber,
