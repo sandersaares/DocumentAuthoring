@@ -37,14 +37,14 @@ function New-GitHubBuildReport() {
 
     $url = "https://api.github.com/repos/$organization/$repository/issues/$issueNumber/comments"
 
-    $encodedHtmlUrl = [Web.HttpUtility]::UrlEncode($htmlUrl)
-    $encodedOldHtmlUrl = [Web.HttpUtility]::UrlEncode($oldHtmlUrl)
+    $encodedHtmlUrl = [Uri]::EscapeDataString($htmlUrl)
+    $encodedOldHtmlUrl = [Uri]::EscapeDataString($oldHtmlUrl)
     $diffUrl = "https://services.w3.org/htmldiff?doc1=$encodedOldHtmlUrl&doc2=$encodedHtmlUrl"
 
-    $body += "Output from successful build of $version`r`n`r`n"
-    $body += "[PDF document]($pdfUrl)`r`n`r`n"
-    $body += "[HTML document]($htmlUrl)`r`n`r`n"
-    $body += "[HTML diff]($diffUrl)"
+    $body += "Output from successful build ($version):`r`n`r`n"
+    $body += "* [PDF document]($pdfUrl)`r`n"
+    $body += "* [HTML document]($htmlUrl)`r`n"
+    $body += "* [HTML diff with target branch]($diffUrl)"
 
     $requestBody = @{
         body = $body
