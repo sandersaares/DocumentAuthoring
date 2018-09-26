@@ -42,8 +42,11 @@ function Invoke-DocumentCompiler() {
     $pdfFilePath = BuildPdf $outputPath $htmlFilePath $externals
 
     Write-Host "Build completed."
-    Write-Host $htmlFilePath
-    Write-Host $pdfFilePath
+
+    return @{
+        htmlFilePath = $htmlFilePath
+        pdfFilePath = $pdfFilePath
+    }
 }
 
 ### Below this line is internal logic not exported to user. ###
