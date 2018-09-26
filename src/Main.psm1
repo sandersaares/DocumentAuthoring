@@ -2,8 +2,7 @@ $ErrorActionPreference = "Stop"
 
 # Entry point of the module. Functions listed here can be exported to the user if declared in manifest.
 
-# PSScriptAnalyzer falsely says that Build is not an approved verb. You can ignore that warning - it is.
-function Build-Document() {
+function Invoke-DocumentCompiler() {
     [CmdletBinding()]
     param(
         # Path to the Bikeshed file to build. If null, will look for a single .bs file in current directory.
