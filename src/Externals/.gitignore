@@ -1,0 +1,3 @@
+# We extract graphviz to a directory called graphviz.
+# Ignore it in case we accidentally do so during development.
+graphviz
