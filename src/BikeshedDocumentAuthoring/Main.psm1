@@ -167,6 +167,12 @@ function DetermineBasename($inputFilePath) {
     $basename = [IO.Path]::GetFileName($inputFilePath).Split(".", [StringSplitOptions]::RemoveEmptyEntries)[0]
 
     Write-Host "Output filenames will start with '$basename'"
+
+    if ($env:TF_BUILD) {
+        # If operating under VSTS, publish the basename for task automation.
+        Write-Host "##vso[task.setvariable variable=documentBasename;]$basename"
+    }
+
     return $basename
 }
 
@@ -216,24 +222,31 @@ function BuildDiagrams($outputPath, $diagramsPath, $externals) {
 function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
     $outputFilePath = Join-Path $outputPath ($basename + ".html")
 
-    if ($force) {
-        Write-Host "Building Bikeshed document."
-        [Bikeshed]::Compile($inputFile.FullName, $true) | Out-File $outputFilePath
-    }
-    else {
-        # First validate, because build only fails on super critical errors.
-        Write-Host "Validating Bikeshed document."
-        try {
+    try {
+        if ($force) {
+            Write-Host "Building Bikeshed document."
+            [Bikeshed]::Compile($inputFile.FullName, $true) | Out-File $outputFilePath
+        }
+        else {
+            # First validate, because build only fails on super critical errors.
+            Write-Host "Validating Bikeshed document."
+
             [Bikeshed]::Validate($inputFile.FullName)
 
             Write-Host "Building Bikeshed document."
             [Bikeshed]::Compile($inputFile.FullName, $false) | Out-File $outputFilePath
         }
-        catch {
-            # The Azure DevOps GUI reports nicer errors if we use Write-Error.
-            # Otherwise, you need to dig down into logs to find the issue.
-            Write-Error $_.Exception.Message
+    }
+    catch {
+        if ($env:TF_BUILD) {
+            # Save the Bikeshed error as a VSTS variable if we are operating under VSTS.
+            # This allows for user-friedly errors in GitHub integration later on.
+            Write-Host "##vso[task.setvariable variable=bikeshedError;]$($_.Exception.Message)"
         }
+
+        # The Azure DevOps GUI reports nicer errors if we use Write-Error.
+        # Otherwise, you need to dig down into logs to find the issue.
+        Write-Error $_.Exception.Message
     }
 
     return $outputFilePath
