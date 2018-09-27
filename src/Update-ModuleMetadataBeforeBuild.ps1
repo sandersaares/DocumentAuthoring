@@ -30,7 +30,7 @@ if ($prereleaseTagLine.Count -ne 1) {
 # If we do make a prerelease build, we put "-pre-123456" as the suffix, with the number being the build ID.
 # The build ID is auto-incrementing as long as we use the same Azure Devops account, so it's all taken care of.
 $buildId = ([int]$env:BUILD_BUILDID).ToString("000000")
-$prereleaseSuffix = "-pre-$buildId"
+$prereleaseSuffix = "-pre$buildId"
 
 Write-Host "Setting prerelease version suffix: $prereleaseSuffix"
 
