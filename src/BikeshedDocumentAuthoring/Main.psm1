@@ -146,7 +146,10 @@ function ResolveInputFile($path) {
         # If there is no path, we expect a single file in whatever the current directory is.
         $candidates = Get-ChildItem -File -Path "*$defaultFileExtension"
 
-        if ($candidates.Count -ne 1) {
+        if ($candidates.Count -eq 0) {
+            Write-Error "Did not find any $defaultFileExtension file in current directory to use as input."
+        }
+        elseif ($candidates.Count -ne 1) {
             $candidateNames = [string]::Join(", ", ($candidates | % { $_.Name }))
 
             Write-Error "Expected to find exactly 1 $defaultFileExtension file in current directory to use as input. Instead found $($candidates.Count): $candidateNames"
@@ -157,29 +160,13 @@ function ResolveInputFile($path) {
 }
 
 # Determine the base filename to use for the document.
-# This will be the original name, with a version suffix.
-# So Abc.bs.md will become Abc-1.5
+# This will be the original name, without any extension(s).
+# This pattern may change in the future, so do not rely on it.
 function DetermineBasename($inputFilePath) {
-    # We start with just the filename.
-    $basename = [IO.Path]::GetFileNameWithoutExtension($inputFilePath)
+    # We start with whatever comes before the first dot in the filename.
+    $basename = [IO.Path]::GetFileName($inputFilePath).Split(".", [StringSplitOptions]::RemoveEmptyEntries)[0]
 
-    # We try to parse it to get the version string.
-    # This might not work for various reasons.
-    # We just emit a warning and continue if so.
-    $versionLine = Get-Content $inputFilePath | ? { $_ -match "^\s*(?:Level|Revision):\s*(.+)`$" }
-
-    if (!$versionLine) {
-        Write-Warning "Could not find document version number in input file. Will omit version number from filenames."
-        return $basename
-    }
-    elseif ($versionLine.Count -ne 1) {
-        Write-Warning "Found multiple document version numbers in input file. Will omit version number from filenames."
-        return $basename
-    }
-
-    $basename += "-" + $matches[1]
-
-    Write-Host "Output filenames will start with $basename"
+    Write-Host "Output filenames will start with '$basename'"
     return $basename
 }
 
