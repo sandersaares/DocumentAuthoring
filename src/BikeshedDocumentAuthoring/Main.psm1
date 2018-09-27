@@ -207,16 +207,22 @@ function BuildDiagrams($outputPath, $diagramsPath, $externals) {
     else {
         Write-Host "Generating images from PlantUML diagrams in $diagramsPath."
 
-        # TODO: Support deeper paths here (if we chapterize the files, we would want Diagrams/Chapter1/*.wsd).
-        #
-        # This might be easily supported in PlantUML itself but alas, it does not really work that way.
-        # http://forum.plantuml.net/8293/double-star-recursive-input-does-not-appear-to-work-reliably
-        # However, we could work around it by individually processing each directory with PlantUML.
-        java -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -output "$outputPath" -timeout 60 "$(Join-Path $diagramsPath '*.wsd')"
+        # We want to preserve original filesystem structure, so just copy everything, run
+        # PlantUML to generate outputs and then delete all the inputs. It gets the job done.
+        Copy-Item $diagramsPath $outputPath -Recurse
+        $diagramsOutputPath = Join-Path $outputPath ([IO.Path]::GetFileName($diagramsPath))
+
+        # NB! Those extra quotes in the input path are critical due to PlantUML defect.
+        # Without it, the ** pattern does not work (no subdirectories will be processed).
+        java -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -timeout 60 "`"$(Join-Path $diagramsOutputPath '**.wsd')`""
 
         if ($LASTEXITCODE -ne 0) {
             Write-Error "Diagram generation failed! See log above for errors."
         }
+
+        # Delete anything that is not an output of diagram generation.
+        Write-Verbose "Deleting diagram generation temporary files."
+        Get-ChildItem $diagramsOutputPath -File -Recurse -Exclude "*.png" | Remove-Item -Recurse -Force
     }
 }
 
