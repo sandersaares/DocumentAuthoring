@@ -32,7 +32,8 @@ function Invoke-DocumentCompiler() {
     $imagesPath = Join-Path $workspaceRootPath "Images"
     Write-Verbose "Expending to find images in $imagesPath."
 
-    PrepareOutputDirectory $outputPath $imagesPath
+    PrepareOutputDirectory $outputPath
+    CopyImages $outputPath $imagesPath
 
     # We will build all diagrams that exist in a Diagrams folder relative to the input document.
     $diagramsPath = Join-Path $workspaceRootPath "Diagrams"
@@ -175,7 +176,7 @@ function DetermineBasename($inputFilePath) {
     return $basename
 }
 
-function PrepareOutputDirectory($outputPath, $imagesPath) {
+function PrepareOutputDirectory($outputPath) {
     Write-Verbose "Cleaning output directory."
 
     if (Test-Path $outputPath) {
@@ -185,7 +186,9 @@ function PrepareOutputDirectory($outputPath, $imagesPath) {
     }
 
     [IO.Directory]::CreateDirectory($outputPath) | Out-Null
+}
 
+function CopyImages($outputPath, $imagesPath) {
     if (!(Test-Path $imagesPath) -or (Get-Item $imagesPath) -isnot [IO.DirectoryInfo]) {
         Write-Verbose "No Images directory was found next to the input file. Will not copy any images."
     }
