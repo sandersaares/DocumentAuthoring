@@ -91,8 +91,6 @@ function New-FailingGitHubBuildReport() {
         [string]$botUsername
     )
 
-    $url = "https://api.github.com/repos/$organization/$repository/issues/$issueNumber/comments"
-
     $body = $buildReportTag + "`r`n`r`n"
     $body += "Build failed. Outputs are not available if the build fails.`r`n`r`n"
     $body += "To see the details of the failure, explore the logs shown when you click on the details link near the bottom or on the red X next to the commit ID.`r`n`r`n"
@@ -109,11 +107,13 @@ function New-FailingGitHubBuildReport() {
     $existingBuildReportId = FindBuildReportCommentId -organization $organization -repository $repository -issueNumber $issueNumber -authorizationToken $authorizationToken -botUsername $botUsername
 
     if ($existingBuildReportId) {
-        $url += "/$existingBuildReportId"
+        $url = "https://api.github.com/repos/$organization/$repository/issues/comments/$existingBuildReportId"
 
         Invoke-WebRequest -Uri $url -UseBasicParsing -Method Patch -Body $requestBody -ContentType "application/json" -Headers $requestHeaders
     }
     else {
+        $url = "https://api.github.com/repos/$organization/$repository/issues/$issueNumber/comments"
+
         Invoke-WebRequest -Uri $url -UseBasicParsing -Method Post -Body $requestBody -ContentType "application/json" -Headers $requestHeaders
     }
 }
