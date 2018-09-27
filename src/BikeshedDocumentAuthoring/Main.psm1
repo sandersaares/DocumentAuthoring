@@ -5,7 +5,8 @@ $ErrorActionPreference = "Stop"
 function Invoke-DocumentCompiler() {
     [CmdletBinding()]
     param(
-        # Path to the Bikeshed file to build. If null, will look for a single .bs file in current directory.
+        # Path to the Bikeshed file to build. If null, will look for a single .md file in current directory.
+        # We do not use the .bs file extension because editors are not familiar, so syntax coloring does not work.
         [Parameter()]
         [string]$path,
 
@@ -45,7 +46,7 @@ function Invoke-DocumentCompiler() {
 
     return @{
         htmlFilePath = $htmlFilePath
-        pdfFilePath = $pdfFilePath
+        pdfFilePath  = $pdfFilePath
     }
 }
 
@@ -134,11 +135,11 @@ function ResolveInputFile($path) {
         return $file
     }
     else {
-        # If there is no path, we expect a single .bs file in whatever the current directory is.
-        $candidates = Get-ChildItem -File -Path "*.bs"
+        # If there is no path, we expect a single .md file in whatever the current directory is.
+        $candidates = Get-ChildItem -File -Path "*.md"
 
         if ($candidates.Count -ne 1) {
-            Write-Error "Expected to find exactly 1 .bs file in current directory to use as input. Instead found $($candidates.Count)."
+            Write-Error "Expected to find exactly 1 .md file in current directory to use as input. Instead found $($candidates.Count)."
         }
 
         return $candidates
