@@ -93,7 +93,7 @@ function New-FailingGitHubBuildReport() {
 
     $body = $buildReportTag + "`r`n`r`n"
     $body += "Build failed. Outputs are not available if the build fails.`r`n`r`n"
-    $body += "To see the details of the failure, explore the logs shown when you click on the details link near the bottom or on the red X next to the commit ID.`r`n`r`n"
+    $body += "To see the details of the failure, explore the logs shown when you click on the details link near the bottom or on the red X next to the most recent commit ID.`r`n`r`n"
     $body += "This comment will be updated after each build."
 
     $requestBody = @{
