@@ -28,6 +28,10 @@ function New-SucceedingGitHubBuildReport() {
         [Parameter(Mandatory = $true)]
         [string]$oldHtmlUrl,
 
+        # URL to the ZIP with all the output.
+        [Parameter(Mandatory = $true)]
+        [string]$zipUrl,
+
         [Parameter(Mandatory = $true)]
         [string]$authorizationToken,
 
@@ -47,6 +51,7 @@ function New-SucceedingGitHubBuildReport() {
     $body += "* [PDF document]($pdfUrl)`r`n"
     $body += "* [HTML document]($htmlUrl)`r`n"
     $body += "* [HTML diff with target branch]($diffUrl)`r`n`r`n"
+    $body += "* [Download PDF + HTML as archive]($zipUrl)`r`n`r`n"
     $body += "This comment will be updated after each build."
 
     $requestBody = @{
