@@ -144,7 +144,9 @@ function ResolveInputFile($path) {
         $candidates = Get-ChildItem -File -Path "*$defaultFileExtension"
 
         if ($candidates.Count -ne 1) {
-            Write-Error "Expected to find exactly 1 $defaultFileExtension file in current directory to use as input. Instead found $($candidates.Count)."
+            $candidateNames = [string]::Join(", ", ($candidates | % { $_.Name })
+
+            Write-Error "Expected to find exactly 1 $defaultFileExtension file in current directory to use as input. Instead found $($candidates.Count): $candidateNames"
         }
 
         return $candidates
