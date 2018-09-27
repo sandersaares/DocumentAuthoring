@@ -28,12 +28,11 @@ function Invoke-DocumentCompiler() {
     $outputPath = Join-Path $workspaceRootPath "Output"
     Write-Verbose "Will generate output in $outputPath."
 
-    # Assets come from "Assets/" directory relative to input file.
-    # Assets are static files that are not generated, e.g. manually created JPG/PNG/XML or other files.
-    $assetsPath = Join-Path $workspaceRootPath "Assets"
-    Write-Verbose "Expending to find static assets in $assetsPath."
+    # Images come from "Images/" directory relative to input file.
+    $imagesPath = Join-Path $workspaceRootPath "Images"
+    Write-Verbose "Expending to find images in $imagesPath."
 
-    PrepareOutputDirectory $outputPath $assetsPath
+    PrepareOutputDirectory $outputPath $imagesPath
 
     # We will build all diagrams that exist in a Diagrams folder relative to the input document.
     $diagramsPath = Join-Path $workspaceRootPath "Diagrams"
@@ -176,7 +175,7 @@ function DetermineBasename($inputFilePath) {
     return $basename
 }
 
-function PrepareOutputDirectory($outputPath, $assetsPath) {
+function PrepareOutputDirectory($outputPath, $imagesPath) {
     Write-Verbose "Cleaning output directory."
 
     if (Test-Path $outputPath) {
@@ -187,14 +186,14 @@ function PrepareOutputDirectory($outputPath, $assetsPath) {
 
     [IO.Directory]::CreateDirectory($outputPath) | Out-Null
 
-    if (!(Test-Path $assetsPath) -or (Get-Item $assetsPath) -isnot [IO.DirectoryInfo]) {
-        Write-Verbose "No Assets directory was found next to the input file. Will not copy any static assets."
+    if (!(Test-Path $imagesPath) -or (Get-Item $imagesPath) -isnot [IO.DirectoryInfo]) {
+        Write-Verbose "No Images directory was found next to the input file. Will not copy any images."
     }
     else {
-        Write-Host "Copying static assets to output directory."
+        Write-Host "Copying Images directory."
 
-        # Recursively copy all the static assets to the output directory.
-        Get-ChildItem $assetsPath | % { Copy-Item -Path $_.FullName $outputPath -Recurse }
+        # Recursively copy the entire directory (preserving the directory).
+        Copy-Item $imagesPath $outputPath -Recurse | Out-Null
     }
 }
 
