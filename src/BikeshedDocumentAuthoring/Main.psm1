@@ -241,7 +241,9 @@ function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
         if ($env:TF_BUILD) {
             # Save the Bikeshed error as a VSTS variable if we are operating under VSTS.
             # This allows for user-friedly errors in GitHub integration later on.
-            Write-Host "##vso[task.setvariable variable=bikeshedError;]$($_.Exception.Message)"
+            # We need to strip any newlines, though, since otherwise they might get lost in transit in some cases.
+            $message = $_.Exception.Message.Replace("`r", "").Replace("`n", "")
+            Write-Host "##vso[task.setvariable variable=bikeshedError;]$message"
         }
 
         # The Azure DevOps GUI reports nicer errors if we use Write-Error.
