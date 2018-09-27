@@ -28,6 +28,6 @@ if ($module.PrivateData.PSData.Prerelease) {
 Write-Host "Parsed version string $version"
 
 # Add parsed version as a prefix to whatever the build definition author specified.
-$fullVersion = "$version-$(Build.BuildNumber)"
+$fullVersion = "$version-$($env:BUILD_BUILDNUMBER)"
 
 Write-Host "##vso[build.updatebuildnumber]$fullVersion"
