@@ -40,8 +40,6 @@ function New-SucceedingGitHubBuildReport() {
         [string]$botUsername
     )
 
-    $url = "https://api.github.com/repos/$organization/$repository/issues/$issueNumber/comments"
-
     $encodedHtmlUrl = [Uri]::EscapeDataString($htmlUrl)
     $encodedOldHtmlUrl = [Uri]::EscapeDataString($oldHtmlUrl)
     $diffUrl = "https://services.w3.org/htmldiff?doc1=$encodedOldHtmlUrl&doc2=$encodedHtmlUrl"
@@ -65,11 +63,13 @@ function New-SucceedingGitHubBuildReport() {
     $existingBuildReportId = FindBuildReportCommentId -organization $organization -repository $repository -issueNumber $issueNumber -authorizationToken $authorizationToken -botUsername $botUsername
 
     if ($existingBuildReportId) {
-        $url += "/$existingBuildReportId"
+        $url = "https://api.github.com/repos/$organization/$repository/issues/comments/$existingBuildReportId"
 
         Invoke-WebRequest -Uri $url -UseBasicParsing -Method Patch -Body $requestBody -ContentType "application/json" -Headers $requestHeaders
     }
     else {
+        $url = "https://api.github.com/repos/$organization/$repository/issues/$issueNumber/comments"
+
         Invoke-WebRequest -Uri $url -UseBasicParsing -Method Post -Body $requestBody -ContentType "application/json" -Headers $requestHeaders
     }
 }
