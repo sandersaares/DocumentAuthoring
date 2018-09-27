@@ -223,10 +223,17 @@ function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
     else {
         # First validate, because build only fails on super critical errors.
         Write-Host "Validating Bikeshed document."
-        [Bikeshed]::Validate($inputFile.FullName)
+        try {
+            [Bikeshed]::Validate($inputFile.FullName)
 
-        Write-Host "Building Bikeshed document."
-        [Bikeshed]::Compile($inputFile.FullName, $false) | Out-File $outputFilePath
+            Write-Host "Building Bikeshed document."
+            [Bikeshed]::Compile($inputFile.FullName, $false) | Out-File $outputFilePath
+        }
+        catch {
+            # The Azure DevOps GUI reports nicer errors if we use Write-Error.
+            # Otherwise, you need to dig down into logs to find the issue.
+            Write-Error $_.Exception.Message
+        }
     }
 
     return $outputFilePath
@@ -252,7 +259,9 @@ function BuildZip($outputPath, $basename) {
     Write-Host "Generating ZIP archive with all outputs."
 
     $zipPath = Join-Path $outputPath ($basename + ".zip")
-    Compress-Archive -Path $outputPath -DestinationPath $zipPath
+
+    # We need to use a wildcard because otherwise it puts the directory inside the archive, too.
+    Compress-Archive -Path (Join-Path $outputPath "*") -DestinationPath $zipPath
 
     return $zipPath
 }

@@ -42,7 +42,7 @@ public sealed class Bikeshed
             else
             {
                 Console.Error.WriteLine(result);
-                throw new Exception("Bikeshed validation failed. Fix the errors and try again.");
+                throw new Exception("Bikeshed document validation failed. Fix the errors and try again. Server returned the following output: " + result);
             }
         }
     }
@@ -72,7 +72,7 @@ public sealed class Bikeshed
             else
             {
                 Console.Error.WriteLine(result);
-                throw new Exception("Build failed - see above log for errors.");
+                throw new Exception("Bikeshed document build failed - see above log for errors. Server returned the following output: " + result);
             }
         }
     }
