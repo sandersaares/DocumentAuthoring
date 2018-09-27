@@ -22,6 +22,7 @@ function Invoke-DocumentCompiler() {
     Write-Host "Building Bikeshed document: $($inputFile.FullName)"
 
     $workspaceRootPath = Split-Path -Parent $inputFile.FullName
+    $basename = DetermineBasename $inputFile.FullName
 
     # Output goes into "Output/" directory relative to input file.
     $outputPath = Join-Path $workspaceRootPath "Output"
@@ -39,9 +40,9 @@ function Invoke-DocumentCompiler() {
 
     BuildDiagrams $outputPath $diagramsPath $externals
 
-    $htmlFilePath = BuildBikeshedDocument $outputPath $inputFile $force
-    $pdfFilePath = BuildPdf $outputPath $htmlFilePath $externals
-    $zipFilePath = BuildZip $outputPath $inputFile.FullName
+    $htmlFilePath = BuildBikeshedDocument $outputPath $inputFile $basename $force
+    $pdfFilePath = BuildPdf $outputPath $htmlFilePath $basename $externals
+    $zipFilePath = BuildZip $outputPath $basename
 
     Write-Host "Build completed."
 
@@ -155,6 +156,33 @@ function ResolveInputFile($path) {
     }
 }
 
+# Determine the base filename to use for the document.
+# This will be the original name, with a version suffix.
+# So Abc.bs.md will become Abc-1.5
+function DetermineBasename($inputFilePath) {
+    # We start with just the filename.
+    $basename = [IO.Path]::GetFileNameWithoutExtension($inputFilePath)
+
+    # We try to parse it to get the version string.
+    # This might not work for various reasons.
+    # We just emit a warning and continue if so.
+    $versionLine = Get-Content $inputFilePath | ? { $_ -match "^\s*(?:Level|Revision):\s*(.+)`$" }
+
+    if (!$versionLine) {
+        Write-Warning "Could not find document version number in input file. Will omit version number from filenames."
+        return $basename
+    }
+    elseif ($versionLine.Count -ne 1) {
+        Write-Warning "Found multiple document version numbers in input file. Will omit version number from filenames."
+        return $basename
+    }
+
+    $basename += "-" + $matches[1]
+
+    Write-Host "Output filenames will start with $basename"
+    return $basename
+}
+
 function PrepareOutputDirectory($outputPath, $assetsPath) {
     Write-Verbose "Cleaning output directory."
 
@@ -198,8 +226,8 @@ function BuildDiagrams($outputPath, $diagramsPath, $externals) {
 }
 
 # Builds the document and returns the path to the resulting HTML file.
-function BuildBikeshedDocument($outputPath, $inputFile, $force) {
-    $outputFilePath = Join-Path $outputPath ($inputFile.BaseName + ".html")
+function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
+    $outputFilePath = Join-Path $outputPath ($basename + ".html")
 
     if ($force) {
         Write-Host "Building Bikeshed document."
@@ -217,10 +245,10 @@ function BuildBikeshedDocument($outputPath, $inputFile, $force) {
     return $outputFilePath
 }
 
-function BuildPdf($outputPath, $htmlFilePath, $externals) {
+function BuildPdf($outputPath, $htmlFilePath, $basename, $externals) {
     Write-Host "Generating PDF."
 
-    $outputFilePath = Join-Path $outputPath ([IO.Path]::GetFileNameWithoutExtension($htmlFilePath) + ".pdf")
+    $outputFilePath = Join-Path $outputPath ($basename + ".pdf")
 
     # TODO: block access to unrelated files once a related defect is fixed
     # See https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3846
@@ -233,10 +261,10 @@ function BuildPdf($outputPath, $htmlFilePath, $externals) {
     return $outputFilePath
 }
 
-function BuildZip($outputPath, $inputFilePath) {
+function BuildZip($outputPath, $basename) {
     Write-Host "Generating ZIP archive with all outputs."
 
-    $zipPath = Join-Path $outputPath ([IO.Path]::GetFileNameWithoutExtension($inputFilePath) + ".zip")
+    $zipPath = Join-Path $outputPath ($basename + ".zip")
     Compress-Archive -Path $outputPath -DestinationPath $zipPath
 
     return $zipPath
