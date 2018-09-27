@@ -123,6 +123,17 @@ function New-FailingGitHubBuildReport() {
     }
 }
 
+# Determines the correct publishing directory to name for the outputs from this build, based on
+# the current branch and whether this is a PR. This only works if called form a VSTS build process.
+function Get-OutputPublishDirectoryName() {
+    if ($env:BUILD_REASON -eq "PullRequest") {
+        return "pull/$env:SYSTEM_PULLREQUEST_PULLREQUESTNUMBER"
+    }
+    else {
+        return $env:BUILD_SOURCEBRANCHNAME
+    }
+}
+
 ### Below this line is internal logic not exported to user. ###
 
 # PowerShell defaults to TLS 1.0 which is not really accepted these days.
