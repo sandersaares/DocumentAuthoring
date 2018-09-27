@@ -41,12 +41,14 @@ function Invoke-DocumentCompiler() {
 
     $htmlFilePath = BuildBikeshedDocument $outputPath $inputFile $force
     $pdfFilePath = BuildPdf $outputPath $htmlFilePath $externals
+    $zipFilePath = BuildZip $outputPath $inputFile.FullName
 
     Write-Host "Build completed."
 
     return @{
         htmlFilePath = $htmlFilePath
         pdfFilePath  = $pdfFilePath
+        zipFilePath  = $zipFilePath
     }
 }
 
@@ -229,4 +231,13 @@ function BuildPdf($outputPath, $htmlFilePath, $externals) {
     }
 
     return $outputFilePath
+}
+
+function BuildZip($outputPath, $inputFilePath) {
+    Write-Host "Generating ZIP archive with all outputs."
+
+    $zipPath = Join-Path $outputPath ([IO.Path]::GetFileNameWithoutExtension($inputFilePath) + ".zip")
+    Compress-Archive -Path $outputPath -DestinationPath $zipPath
+
+    return $zipPath
 }
