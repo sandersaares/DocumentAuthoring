@@ -98,7 +98,17 @@ function New-FailingGitHubBuildReport() {
 
     $body = $buildReportTag + "`r`n`r`n"
     $body += "Build failed. Outputs are not available if the build fails.`r`n`r`n"
-    $body += "To see the details of the failure, explore the logs shown when you click on the details link near the bottom or on the red X next to the most recent commit ID.`r`n`r`n"
+
+    if ($env:BIKESHEDERROR) {
+        # If there was a Bikeshed error, we embed it right in the comment.
+        $body += $env:BIKESHEDERROR
+        $body += "`r`n`r`n"
+    }
+    else {
+        # Otherwise, we leave info to check the link for details and dig in logs.
+        $body += "To see the details of the failure, explore the logs shown when you click on the details link near the bottom or on the red X next to the most recent commit ID.`r`n`r`n"
+    }
+
     $body += "This comment will be updated after each build."
 
     $requestBody = @{
