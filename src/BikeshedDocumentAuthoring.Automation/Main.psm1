@@ -154,7 +154,14 @@ function FindBuildReportCommentId() {
         Authorization = "token $authorizationToken"
     }
 
-    $comments = (Invoke-WebRequest -Uri $url -UseBasicParsing -Headers $requestHeaders).Contents | ConvertFrom-Json
+    $response = Invoke-WebRequest -Uri $url -UseBasicParsing -Headers $requestHeaders
+
+    if (!$response.Contents) {
+        # Issue has no comments.
+        return $null
+    }
+
+    $comments = $response.Contents | ConvertFrom-Json
 
     $buildReport = $comments | ? { $_.user.login -eq $botUsername -and $_.body -like "$buildReportTag*" } | Select-Object -First 1
 
