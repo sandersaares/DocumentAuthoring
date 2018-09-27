@@ -246,9 +246,10 @@ function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
             Write-Host "##vso[task.setvariable variable=bikeshedError;]$message"
         }
 
-        # The Azure DevOps GUI reports nicer errors if we use Write-Error.
-        # Otherwise, you need to dig down into logs to find the issue.
-        Write-Error $_.Exception.Message
+        # Just let it bubble up. There is no way to get good error messages in build summary as far as I can tell.
+        # No matter what you do with the error, it will still say "PowerShell exited with code '1'." and force
+        # the user to dig into logs to find something useful.
+        throw
     }
 
     return $outputFilePath
