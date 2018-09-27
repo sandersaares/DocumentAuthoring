@@ -5,8 +5,8 @@ $ErrorActionPreference = "Stop"
 function Invoke-DocumentCompiler() {
     [CmdletBinding()]
     param(
-        # Path to the Bikeshed file to build. If null, will look for a single .md file in current directory.
-        # We do not use the .bs file extension because editors are not familiar, so syntax coloring does not work.
+        # Path to the Bikeshed file to build. If null, will look for a single file in current directory.
+        # The file extension must match $defaultFileExtension for auto-detection of input to work.
         [Parameter()]
         [string]$path,
 
@@ -51,6 +51,11 @@ function Invoke-DocumentCompiler() {
 }
 
 ### Below this line is internal logic not exported to user. ###
+
+# To preserve syntax coloring, we use ".md" final extension.
+# To specifically point out Bikeshed, we also put .bs there.
+# We process any files, this is just the default we search for during input auto-detection.
+$defaultFileExtension = ".bs.md"
 
 # This will setup all the external tools that we use (if not already done so)
 # and return a structure with paths to all of them, for easy reference later.
@@ -135,8 +140,8 @@ function ResolveInputFile($path) {
         return $file
     }
     else {
-        # If there is no path, we expect a single .md file in whatever the current directory is.
-        $candidates = Get-ChildItem -File -Path "*.md"
+        # If there is no path, we expect a single file in whatever the current directory is.
+        $candidates = Get-ChildItem -File -Path "*$defaultFileExtension"
 
         if ($candidates.Count -ne 1) {
             Write-Error "Expected to find exactly 1 .md file in current directory to use as input. Instead found $($candidates.Count)."
