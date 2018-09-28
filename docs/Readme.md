@@ -2,7 +2,7 @@
 
 This is a set of guides for authoring documents on GitHub.
 
-Documents that use this authoring workflow are written in the [Bikeshed language](https://tabatkins.github.io/bikeshed/#markup-shortcuts) (a mixture of Markdown and HTML), from which HTML and PDF outputs are automatically generated.
+Documents that use this authoring workflow are written in the Bikeshed language, which is a mixture of Markdown and HTML. From the Bikeshed inputs, HTML and PDF outputs are automatically generated.
 
 [The Content Guide](Content.md) describes basic features of document content creation that exist.
 
