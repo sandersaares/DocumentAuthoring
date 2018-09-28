@@ -174,3 +174,27 @@ Alice <-- Bob: Another authentication Response
 # Restrictions on Bikeshed capabilities
 
 Due to process limitations it is not possible to include code blocks (or other content) from standalone files, even though the [Bikeshed documentation does define an "include" feature](https://tabatkins.github.io/bikeshed/#including) for this purpose. You must embed all your textual content directly in the main Bikeshed document.
+
+# Compiling the document
+
+Changes made in the document owner's repository and its pull requests automatically trigger a build process that generates and publishes the updated output documents on the web and links them in pull request comments.
+
+Local document compilation is also relatively straightforward. The system requirements for local compilation are:
+
+* Windows 10 or a recent Linux distribution with a graphical user interface
+* Java
+* (Linux only) [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
+* (Linux only) wkhtmltopdf
+* (Linux only) graphviz
+
+All of the commands below are to be executed in a PowerShell console (`pwsh` on Linux).
+
+To install the compiler, execute `Install-Module BikeshedDocumentAuthoring`. You can later update it with `Update-Module BikeshedDocumentAuthoring`. Specify the `-Scope CurrentUser` argument if you do not wish to create a system-wide installation.
+
+To compile the document:
+
+1. Navigate to the directory that contains the document
+1. Execute `Import-Module BikeshedDocumentAuthoring`
+1. Execute `Invoke-DocumentCompiler`
+
+After successful compilation, the output will be in an `Output/` subdirectory.

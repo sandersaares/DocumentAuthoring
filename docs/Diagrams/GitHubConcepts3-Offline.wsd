@@ -1,0 +1,24 @@
+@startuml
+
+package "Your GitHub account" {
+    [Fork of document repository\naka <b>downstream</b> repository] as Downstream
+    [master branch] as ContribMaster
+
+    Downstream - ContribMaster
+}
+
+package "Your workstation" {
+    [Clone of your fork] as Clone
+    [master branch] as CloneMaster
+
+    Clone - CloneMaster
+}
+
+Downstream --> Clone : (1) Clone
+Clone --> Downstream : (3) Push
+
+actor You
+
+You -> CloneMaster: (2) Add/modify content
+
+@enduml

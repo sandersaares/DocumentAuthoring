@@ -1,0 +1,26 @@
+@startuml
+
+package "GitHub account of document owner" {
+    [Document repository\naka <b>upstream</b> repository] as Upstream
+    [master branch] as Master
+
+    Upstream - Master
+
+    [Pull Request] as PR
+}
+
+package "Your GitHub account" {
+    [Fork of document repository\naka <b>downstream</b> repository] as Downstream
+    [master branch\nwith your changes] as ContribMaster
+
+    Downstream - ContribMaster
+}
+
+PR -left-> Master : Target
+PR -down-> ContribMaster : Source
+
+actor You
+
+You -> PR : Request for editor to pull\nchanges from source to target
+
+@enduml
