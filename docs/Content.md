@@ -137,7 +137,7 @@ Example of the bibliography data format:
 }
 ```
 
-[SpecRef accepts contributions](https://github.com/tobie/specref#updating--adding-new-references), If you do not find a document in the catalog, consider adding it to SpecRef instead of maintaining a custom bibliography section.
+[SpecRef accepts contributions](https://github.com/tobie/specref#updating--adding-new-references). If you do not find a document in the catalog, consider adding it to SpecRef instead of maintaining a custom bibliography section.
 
 # Code blocks
 
