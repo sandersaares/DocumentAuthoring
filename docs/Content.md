@@ -202,7 +202,7 @@ Local document compilation is also relatively straightforward. The system requir
 
 All of the commands below are to be executed in a PowerShell console (`pwsh` on Linux).
 
-To install the compiler, execute `Install-Module BikeshedDocumentAuthoring`. You can later update it with `Update-Module BikeshedDocumentAuthoring`. Specify the `-Scope CurrentUser` argument if you do not wish to create a system-wide installation.
+To install the compiler, execute `Install-Module BikeshedDocumentAuthoring -AllowPrerelease`. You can later update it with `Update-Module BikeshedDocumentAuthoring -AllowPrerelease`. Specify the `-Scope CurrentUser` argument if you do not wish to create a system-wide installation.
 
 To compile the document:
 
