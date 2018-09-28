@@ -56,7 +56,7 @@ Use HTML to insert images. The recommended format is:
 ```html
 <figure>
 	<img src="Images/ExampleWorkflow-Live.png" />
-	<figcaption>Example of workflow for Live Content preparation.</figcaption>
+	<figcaption>Example for Live Content preparation.</figcaption>
 </figure>
 ```
 
