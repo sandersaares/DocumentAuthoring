@@ -184,7 +184,7 @@ The recommended desktop app for authoring is [Visual Studio Code](https://code.v
 
 ![](Images/VsCode-CommandPalette.png)
 
-Tip: Press F1 in Visual Studio Code to open the command palette, from where you can easily access advanced product features.
+Tip: Press F1 in Visual Studio Code to open the command palette. From there you can easily access advanced product features.
 
 You do not need a desktop app for simple contributions - the GitHub web interface can serve basic needs sufficiently well.
 
