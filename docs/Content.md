@@ -37,7 +37,7 @@ NB! Not all Markdown features are supported (e.g. you cannot embed images with M
 To uniquely identify a heading for referencing purposes, you must explicitly add an anchor. The anchor is the `{#xyz}` tag at the end of the heading.
 
 ```text
-## Powering machine learning with XML 1.0 ## {#powering-ml-with-xml}
+# Powering machine learning with XML 1.0 # {#powering-ml-with-xml}
 ```
 
 Use the anchor to reference the heading elsewhere in the text. The link will automatically be replaced with the heading text.
