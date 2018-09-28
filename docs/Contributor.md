@@ -1,3 +1,5 @@
+[Back to table of contents](README.md)
+
 # Contributor Guide
 
 This guide walks you through the steps needed to contribute new content or changes to a document.
