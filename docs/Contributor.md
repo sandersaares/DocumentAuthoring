@@ -44,11 +44,13 @@ Once you have adjusted the contents of your fork to include your contribution, [
 
 A pull request is a request for the editors of the document to review your contribution and merge it into the upstream repository. You will likely receive comments and requests for changes. Any changes you make in your fork are immediately reflected in the pull request - there is no need for any action to submit updates. However, a comment in the pull request is customary after any updates in order to notify editors that the contribution is ready for the next review round.
 
-# How to see the output?
+Submitting a pull request triggers an automated build of the document. Once the build has completed, links to generated output files will be posted in the pull request comments.
+
+# How to see the output before the contribution is ready?
 
 The repository only contains the source code of the document and not the final PDF and HTML output. For any non-trivial changes, you will want to verify that the formatting looks good and that there are no broken links.
 
-There are two methods for seeing the output of your contribution:
+There are two methods for seeing the output of your contribution during authoring:
 
 1. Install the document compiler on your workstation and invoke the build process. Refer to the [Content Guide](Content.md) for details on invoking the compiler.
 1. Create a pull request even before your contribution is ready. Upon pull request creation or update, an automated build process will generate the outputs and post links in the pull request comments. **Mark the pull request as work in progress in the pull request description**, so it does not get prematurely reviewed or rejected!
