@@ -50,7 +50,9 @@ function New-SucceedingGitHubBuildReport() {
     $body += "* [HTML document]($htmlUrl)`r`n"
     $body += "* [HTML diff with target branch]($diffUrl)`r`n"
     $body += "* [Download PDF + HTML as archive]($zipUrl)`r`n`r`n"
-    $body += "This comment will be updated after each build."
+
+    $nowString = (Get-Date).ToString("u")
+    $body += "This comment will be updated after each build. Last update was at $nowString."
 
     $requestBody = @{
         body = $body
@@ -109,7 +111,8 @@ function New-FailingGitHubBuildReport() {
         $body += "To see the details of the failure, explore the logs shown when you click on the details link near the bottom or on the red X next to the most recent commit ID.`r`n`r`n"
     }
 
-    $body += "This comment will be updated after each build."
+    $nowString = (Get-Date).ToString("u")
+    $body += "This comment will be updated after each build. Last update was at $nowString."
 
     $requestBody = @{
         body = $body
