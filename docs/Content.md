@@ -177,6 +177,17 @@ Alice <-- Bob: Another authentication Response
 
 Due to process limitations it is not possible to include code blocks (or other content) from standalone files, even though the [Bikeshed documentation does define an "include" feature](https://tabatkins.github.io/bikeshed/#including) for this purpose. You must embed all your textual content directly in the main Bikeshed document.
 
+
+# Recommended editor
+
+The recommended desktop app for authoring is [Visual Studio Code](https://code.visualstudio.com/). It includes Markdown preview and Git integration out of the box. The [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) enables diagram preview (requires manual setup of dependencies).
+
+![](Images/VsCode-CommandPalette.png)
+
+Tip: Press F1 in Visual Studio Code to open the command palette, from where you can easily access advanced product features.
+
+You do not need a desktop app for simple contributions - the GitHub web interface can serve basic needs sufficiently well.
+
 # Compiling the document
 
 Changes made in the document owner's repository and its pull requests automatically trigger a build process that generates and publishes the updated output documents on the web and links them in pull request comments.
