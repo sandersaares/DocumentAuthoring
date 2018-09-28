@@ -28,23 +28,24 @@ Textual content of the document uses Markdown for formatting. See [Markdown Refe
 
 Various Bikeshed extensions are added to the Markdown language. You can read about the details in the [Bikeshed reference](https://tabatkins.github.io/bikeshed/#markup-shortcuts).
 
-NB! Not all Markdown features are supported (e.g. you cannot embed images using Markdown and have to use HTML).
+NB! Not all Markdown features are supported (e.g. you cannot embed images with Markdown).
 
 # Headings and references
 
 To uniquely identify a heading for referencing purposes, you must explicitly add an anchor. The anchor is the `{#xyz}` tag at the end of the heading.
 
-```markdown
+```text
 ## Powering machine learning with XML 1.0 ## {#powering-ml-with-xml}
 ```
 
 Use the anchor to reference the heading elsewhere in the text. The link will automatically be replaced with the heading text.
 
-```markdown
-VR solutions often benefit from XML-enabled machine learning, as described in the [[#powering-ml-with-xml]] chapter.
+```text
+VR solutions often benefit from XML-enabled machine learning,
+as described in the [[#powering-ml-with-xml]] chapter.
 ```
 
-**Always add an anchor to every heading**, even if you do not currently reference them - other people might want to; if not in the document then perhaps in hyperlinks on the web!
+**Always add an anchor to every heading**, even those you do not currently reference - other people might want to link to them later!
 
 # Inserting images
 
@@ -72,7 +73,7 @@ Use Markdown link syntax for links to the web.
 Use HTML for tables.
 
 ```html
-<!-- class=def is a builtin style that is a bit nicer than plaintext tables. -->
+<!-- class=def is a builtin style that makes for nice looking tables -->
 <table class="def">
 	<tr>
 		<th>Usage</th>
@@ -101,9 +102,7 @@ For additional information about special block formatting that applies in this a
 
 # References to external documents
 
-You can directly reference any document listed in the [SpecRef catalog](https://specref.org) using `[[!rfc7168]]` (normative) and `[[rfc2324]]` (informative) bibliography tags. Such tags will cause a suitable hyperlink to be generated and, if the reference is normative, the referenced document to be added to the bibliography section.
-
-[SpecRef accepts contributions](https://github.com/tobie/specref#updating--adding-new-references), If you do not find a document in the catalog, consider adding it to SpecRef instead of maintaining a manually updated bibliography section.
+You can directly reference any document listed in the [SpecRef catalog](https://specref.org) using `[[!rfc7168]]` (normative) and `[[rfc2324]]` (informative) tags in text. Such tags will be replaced with a suitable hyperlink during document compilation and, if the reference is normative, the referenced document will be added to the bibliography section.
 
 To add custom bibliography entries, define a `<pre class=biblio>` section containing SpecRef style JSON. This will be simply be appended to any SpecRef data set when building your document.
 
@@ -136,6 +135,8 @@ Example of the bibliography data format:
 }
 ```
 
+[SpecRef accepts contributions](https://github.com/tobie/specref#updating--adding-new-references), If you do not find a document in the catalog, consider adding it to SpecRef instead of maintaining a custom bibliography section.
+
 # Code blocks
 
 Use `<xmp>` for code blocks. Contents of this element are interpreted as plain text, with no need for any escaping of special characters.
@@ -148,11 +149,11 @@ To add line numbers, specify `<xmp line-numbers>`.
 
 You are recommended to generate diagrams from text files, as they enable an easier editing and review experience than images. This document authoring workflow supports diagram generation from [PlantUML files](http://plantuml.com/).
 
-All diagrams must be placed in the `Diagrams/` directory (subdirectories are OK). Diagram files have the `.wsd` extension.
+Diagram files have the `.wsd` extension. All diagrams must be placed in the `Diagrams/` directory (subdirectories are allowed).
 
 At document build time, a `.png` file is generated for each diagram. Simply use this file as you would any other image (except for the fact that these are in the `Diagrams/` directory).
 
-See the PlantUML documentation for syntax examples - it is a very flexible language and supports many diagramming features. A very basic example is given below.
+See the [PlantUML documentation](http://plantuml.com/) for syntax examples - it is a very flexible language and supports many diagramming features. A very basic example is given below.
 
 ## Example: sequence diagram
 
