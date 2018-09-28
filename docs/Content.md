@@ -106,7 +106,7 @@ For additional information about special block formatting that applies in this a
 
 You can directly reference any document listed in the [SpecRef catalog](https://specref.org) using `[[!rfc7168]]` (normative) and `[[rfc2324]]` (informative) tags in text. Such tags will be replaced with a suitable hyperlink during document compilation and, if the reference is normative, the referenced document will be added to the bibliography section.
 
-To add custom bibliography entries, define a `<pre class=biblio>` section containing a SpecRef catalog JSON snippet. This will be simply be appended to any SpecRef data set when building your document.
+To add custom bibliography entries, define a `<pre class=biblio>` section containing a SpecRef catalog JSON snippet. This will be appended to any SpecRef data set when building your document.
 
 Example of the bibliography data format:
 
