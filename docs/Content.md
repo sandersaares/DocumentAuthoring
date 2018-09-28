@@ -192,7 +192,7 @@ You do not need a desktop app for simple contributions - the GitHub web interfac
 
 Changes made in the document owner's repository and its pull requests automatically trigger a build process that generates and publishes the updated output documents on the web and links them in pull request comments.
 
-Local document compilation is also relatively straightforward. The system requirements for local compilation are:
+Local document compilation on your PC is also relatively straightforward. The system requirements for local compilation are:
 
 * Windows 10 or a recent Linux distribution with a graphical user interface
 * Java
