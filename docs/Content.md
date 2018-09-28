@@ -152,42 +152,7 @@ All diagrams must be placed in the `Diagrams/` directory (subdirectories are OK)
 
 At document build time, a `.png` file is generated for each diagram. Simply use this file as you would any other image (except for the fact that these are in the `Diagrams/` directory).
 
-See the PlantUML documentation for syntax examples (it is a very flexible language). A very basic diagram example is given below.
-
-## Example: component diagram
-
-A `Diagrams/ComponentDiagram.wsd` file with the following content will produce the below image as `Diagrams/ComponentDiagram.png`.
-
-```plantuml
-@startuml
-
-package "Recipient A delivery data" {
-    [Document key] as DKforA #lightskyblue
-    [Recipient A public key] as KpubA
-
-    KpubA <-- DKforA : Encrypted with
-}
-
-package "Recipient B delivery data" {
-    [Document key] as DKforB #lightskyblue
-    [Recipient B public key] as KpubB
-
-    KpubB <-- DKforB : Encrypted with
-}
-
-[Content key 1] as Key1 #lightskyblue
-[Content key 2] as Key2 #lightskyblue
-
-Key1 -up-> DKforA : Encrypted with
-Key1 -up-> DKforB
-
-Key2 -up-> DKforA : Encrypted with
-Key2 -up-> DKforB
-
-@enduml
-```
-
-![](Images/ComponentDiagram.png)
+See the PlantUML documentation for syntax examples - it is a very flexible language and supports many diagramming features. A very basic example is given below.
 
 ## Example: sequence diagram
 
