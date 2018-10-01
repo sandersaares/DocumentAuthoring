@@ -15,6 +15,10 @@ Feel free to use both mechanisms concurrently if you wish. **The process you fol
 
 Once a contribution has reached a state where you are comfortable accepting it into the document, use the "Squash and Merge" button in GitHub to merge it.
 
+# Merge conflicts
+
+If GitHub reports that a pull request has merge conflicts, ask the contributor to resolve them. Merge conflicts block merges and automated builds.
+
 # Making editorial changes
 
 You can make editorial changes in the document without having to go through the fork and pull request workflow used by ordinary contributors.
