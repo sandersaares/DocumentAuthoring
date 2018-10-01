@@ -182,7 +182,7 @@ Due to process limitations it is not possible to include code blocks (or other c
 
 # Recommended editor
 
-The recommended desktop app for authoring is [Visual Studio Code](https://code.visualstudio.com/). It includes Markdown preview and Git integration out of the box.
+The recommended desktop app for authoring is [Visual Studio Code](https://code.visualstudio.com/). It includes Markdown preview and [Git integration](https://code.visualstudio.com/docs/editor/versioncontrol) out of the box.
 
 The [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) enables diagram preview (requires [Java](https://www.java.com/en/download/) and [Graphviz 2.38](https://graphviz.gitlab.io/download/)).
 

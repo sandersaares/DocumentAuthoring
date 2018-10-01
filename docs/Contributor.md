@@ -38,7 +38,11 @@ To work offline you must clone your fork onto your workstation. This creates a c
 
 After cloning, perform any desired edits, commit the changes and perform a Git push to copy the committed changes to the online repository. A Git pull is a related operation - perform a pull to copy any online changes to the offline clone.
 
-Tip: [GitHub Desktop](https://desktop.github.com/) is an app that simplifies many common Git operations when working with an offline clone. You can freely mix GitHub Desktop and command-line Git operations, only using the latter when the former does not support your use case.
+![](Images/VsCodeSync.png)
+
+In Visual Studio Code, there is a Sync button on the status bar. Click this button to perform both a pull and a push, synchronizing your offline and online copies in both directions. The screenshot above shows the sync button, with labels indicating 0 commits waiting to be pulled from the fork and 3 commits waiting to be pushed to the fork.
+
+Tip: [GitHub Desktop](https://desktop.github.com/) is an app that simplifies many common Git operations when working with an offline clone. You can freely mix GitHub Desktop, Visual Studio Code and command-line Git operations, depending on which app provides the most user-friendly experience for your desired operation.
 
 # Submit a pull request when ready
 
@@ -46,9 +50,26 @@ Once you have adjusted the contents of your fork to include your contribution, [
 
 ![](Diagrams/GitHubConcepts4-PR.png)
 
-A pull request is a request for the editors of the document to review your contribution and merge it into the upstream repository. You will likely receive comments and requests for changes. Any changes you make in your fork are immediately reflected in the pull request - there is no need for any action to submit updates. However, a comment in the pull request is customary after any updates in order to notify editors that the contribution is ready for the next review round.
+A pull request is a request for the editors of the document to review your contribution and merge it into the upstream repository. Give your pull request a good description that outlines what it is supposed to be and provides the editors any background information they might need to properly review your contribution (e.g. links to related GitHub issues).
+
+You will likely receive comments and requests for changes from the editors. Use GitHub comments for discussion and submit new commits in your fork for any desired changes. Any changes you make in your fork are immediately reflected in the pull request - there is no need for any action to submit updates.
+
+It is good practice to leave a comment on the pull request after completing a round of updates. This clearly signals to editors that the contribution is ready for the next review round.
+
+![](Images/BuildReport.png)
 
 Submitting a pull request triggers an automated build of the document. Once the build has completed, links to generated output files will be posted in the pull request comments.
+
+# Oh no, the build failed!
+
+![](Images/BuildReport-Failure.png)
+
+If a build failure is reported investigate the build logs and take corrective action. A new build will automatically be queued when the fix has been submitted into your fork.
+
+Common reasons for build failures are:
+
+* Syntax errors in document markup.
+* Broken links.
 
 # How to see the output before the contribution is ready?
 
@@ -67,6 +88,24 @@ If your contribution provides only non-conflicting changes, it can be merged by 
 
 If your contribution conflicts with new changes made to the upstream repository then you will need to [merge changes from upstream](https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/) and create a new commit that [resolves any merge conflicts](https://help.github.com/articles/addressing-merge-conflicts/) before the contribution can be accepted.
 
+NB! Merging changes from upstream requires the use of an offline clone. This operation cannot be performed online in the GitHub web interface.
+
+# How do I create multiple parallel contributions?
+
+![](Diagrams/GitHubConcepts5-Branches.png)
+
+Instead of committing your changes into the `master` branch in your fork, [create separate branches](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) for each contribution.
+
+If you work with an offline clone of your fork, all operations are performed on the currently active branch (of which there can be only one). The operation of switching from one active branch to another is called `checkout`. The default active branch is `master`.
+
+In the Visual Studio Code GUI, the current branch is displayed at the bottom-left corner of the status bar.
+
+# What do I do once my pull request has been merged?
+
+You can safely delete your fork.
+
+If you use multiple branches in your fork to work on multiple contributions in parallel, just delete the relevant branch.
+
 # Advanced Git usage
 
-This guide provides a simple workflow designed to make the process easy for contributors that are not very familiar with Git workflows. If you are an experienced Git user then feel free to deviate from the above instructions and use advanced Git features not mentioned here (e.g. multiple branches).
+This guide provides a simple workflow designed to make the process easy for contributors that are not very familiar with Git workflows. If you are an experienced Git user then feel free to deviate from the above instructions and use advanced Git features not mentioned here.

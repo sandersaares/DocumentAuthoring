@@ -1,0 +1,30 @@
+@startuml
+
+package "GitHub account of document owner" {
+    [Document repository\naka <b>upstream</b> repository] as Upstream
+    [master branch] as Master
+
+    Upstream - Master
+}
+
+package "Your GitHub account" {
+    [Fork of document repository\naka <b>downstream</b> repository] as Downstream
+    [master branch] as ContribMaster
+
+    Downstream - ContribMaster
+
+    [featureA branch] as branchA
+    [featureB branch] as branchB
+
+    ContribMaster --> branchB : (3) New branch
+    ContribMaster --> branchA : (2) New branch
+}
+
+Upstream --> Downstream : (1) Fork
+
+actor You
+
+You -up-> branchB : (5) Add/modify content
+You -up-> branchA : (4) Add/modify content
+
+@enduml
