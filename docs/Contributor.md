@@ -108,13 +108,13 @@ If you use Visual Studio Code as your editor, it will provide some text highligh
 
 If during merging, you are notified of conflicts, you should follow these steps to resolve them in each file with conflicts:
 
-* Open the file and find places where conflicts have been marked. Tthere will be inserted lines with big arrows, as on the screenshot above.
-* Decide how to merge the two conflicting versions of the same section.
-* Edit the document to replace the contents of the conflicting section with whatever you consider correct (delete the arrows and any unwanted text).
-* Repeat for all other conflicts in this file.
-* Stage the file by pressing the associated "plus" button in the Visual Studio Code source control sidebar. This marks it as ready to be committed.
-* Repear for all other files with conflicts.
-* Once all files are processed, commit the merge and push the commit into your fork.
+1. Open the file and find the conflicts. There will be lines with arrows to indicate conflicting blocks, as on the screenshot above.
+1. Decide how to merge the two conflicting versions of the same section.
+1. Edit the document to replace the marked text with whatever you consider correct (delete the arrows and any unwanted text).
+1. Repeat for all other conflicts in this file.
+1. Stage the file by pressing the associated "plus" button in the Visual Studio Code source control sidebar. This marks it as ready to be committed.
+1. Repeat for all other files with conflicts.
+1. Once all files are processed, commit the merge and push the commit into your fork.
 
 Merging conflicting changes can be difficult - ask for help in the Slack channel if you get into trouble!
 
