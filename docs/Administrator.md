@@ -56,3 +56,7 @@ Clone an existing document build definition in Azure DevOps and update the follo
 * any other variables listed in the Variables tab
 
 After verifying that all the data is valid for the new document, save the build definition. Automated builds should now be active.
+
+# Assign editors
+
+Give the editors write-level collaborator access to the document repository.
