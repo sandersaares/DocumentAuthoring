@@ -1,5 +1,7 @@
 [Back to table of contents](README.md)
 
+Join #document-authoring on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+
 # Contributor Guide
 
 This guide walks you through the steps needed to contribute new content or changes to a document.
