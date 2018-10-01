@@ -98,6 +98,8 @@ function New-FailingGitHubBuildReport() {
         [string]$botUsername
     )
 
+    $buildResultsLink = $env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI + $env:SYSTEM_TEAMPROJECT + "/_build/results?buildId=" + $env:BUILD_BUILDID
+
     $body = $buildReportTag + "`r`n`r`n"
     $body += "Build failed. Outputs are not available if the build fails.`r`n`r`n"
 
@@ -105,10 +107,11 @@ function New-FailingGitHubBuildReport() {
         # If there was a Bikeshed error, we embed it right in the comment.
         $body += $env:BIKESHEDERROR
         $body += "`r`n`r`n"
+        $body += "[Explore the build logs]($buildResultsLink) for more details.`r`n`r`n"
     }
     else {
         # Otherwise, we leave info to check the link for details and dig in logs.
-        $body += "To see the details of the failure, explore the logs shown when you click on the details link near the bottom or on the red X next to the most recent commit ID.`r`n`r`n"
+        $body += "[Explore the build logs]($buildResultsLink) to determine the reason for the failure.`r`n`r`n"
     }
 
     $nowString = (Get-Date).ToString("u")
