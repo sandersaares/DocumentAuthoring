@@ -52,7 +52,7 @@ Once you have adjusted the contents of your fork to include your contribution, [
 
 A pull request is a request for the editors of the document to review your contribution and merge it into the upstream repository. Give your pull request a good description that outlines what it is supposed to be and provides the editors any background information they might need to properly review your contribution (e.g. links to related GitHub issues).
 
-You will likely receive comments and requests for changes from the editors. Use GitHub comments for discussion and submit new commits in your fork for any desired changes. Any changes you make in your fork are immediately reflected in the pull request - there is no need for any action to submit updates.
+You will likely receive comments and requests for changes from the editors. Use GitHub comments for discussion and submit new commits in your fork to make any desired changes. Any changes you make in your fork are immediately reflected in the pull request - there is no need for any action to submit updates.
 
 It is good practice to leave a comment on the pull request after completing a round of updates. This clearly signals to editors that the contribution is ready for the next review round.
 
@@ -90,7 +90,7 @@ If your contribution conflicts with new changes made to the upstream repository 
 
 NB! Merging changes from upstream requires the use of an offline clone. This operation cannot be performed online in the GitHub web interface.
 
-# How do I create multiple parallel contributions?
+# How do I create multiple independent contributions?
 
 ![](Diagrams/GitHubConcepts5-Branches.png)
 
