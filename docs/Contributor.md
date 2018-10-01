@@ -80,16 +80,6 @@ There are two methods for seeing the output of your contribution during authorin
 1. Install the document compiler on your workstation and invoke the build process. Refer to the [Content Guide](Content.md) for details on invoking the compiler.
 1. Create a pull request even before your contribution is ready. Upon pull request creation or update, an automated build process will generate the outputs and post links in the pull request comments. **Mark the pull request as work in progress in the pull request description**, so it does not get prematurely reviewed or rejected!
 
-# What if the upstream repository changes?
-
-Your fork does not automatically receive updates made to the upstream repository.
-
-If your contribution provides only non-conflicting changes, it can be merged by an editor immediately after review even if your fork lacks the latest updates.
-
-If your contribution conflicts with new changes made to the upstream repository then you will need to [merge changes from upstream](https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/) and create a new commit that [resolves any merge conflicts](https://help.github.com/articles/addressing-merge-conflicts/) before the contribution can be accepted.
-
-NB! Merging changes from upstream requires the use of an offline clone. This operation cannot be performed online in the GitHub web interface.
-
 # How do I create multiple independent contributions?
 
 ![](Diagrams/GitHubConcepts5-Branches.png)
@@ -99,6 +89,32 @@ Instead of committing your changes into the `master` branch in your fork, [creat
 If you work with an offline clone of your fork, all operations are performed on the currently active branch (of which there can be only one). The operation of switching from one active branch to another is called `checkout`. The default active branch is `master`.
 
 In the Visual Studio Code GUI, the current branch is displayed at the bottom-left corner of the status bar.
+
+# What if the upstream repository changes?
+
+**Your fork does not automatically receive updates made to the upstream repository.**
+
+If your contribution provides only non-conflicting changes, it can be merged by an editor immediately after review even if your fork lacks the latest updates.
+
+If your contribution conflicts with new changes made to the upstream repository then you will need to [merge changes from upstream](https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/) and create a new commit that [resolves any merge conflicts](https://help.github.com/articles/addressing-merge-conflicts/) before the contribution can be accepted.
+
+NB! Merging changes from upstream requires the use of an offline clone. This operation cannot be performed online in the GitHub web interface.
+
+![](Images/MergeConflicts.png)
+
+If you use Visual Studio Code as your editor, it will provide some text highlighting to assist in merging conflicting changes but overall resolving merge conflicts it is a manual process.
+
+If during merging, you are notified of conflicts, you should follow these steps to resolve them in each file with conflicts:
+
+* Open the file and find places where conflicts have been marked. Tthere will be inserted lines with big arrows, as on the screenshot above.
+* Decide how to merge the two conflicting versions of the same section.
+* Edit the document to replace the contents of the conflicting section with whatever you consider correct (delete the arrows and any unwanted text).
+* Repeat for all other conflicts in this file.
+* Stage the file by pressing the associated "plus" button in the Visual Studio Code source control sidebar. This marks it as ready to be committed.
+* Repear for all other files with conflicts.
+* Once all files are processed, commit the merge and push the commit into your fork.
+
+Merging conflicting changes can be difficult - ask for help in the Slack channel if you get into trouble!
 
 # What do I do once my pull request has been merged?
 
