@@ -96,7 +96,9 @@ In the Visual Studio Code GUI, the current branch is displayed at the bottom-lef
 
 If your contribution provides only non-conflicting changes, it can be merged by an editor immediately after review even if your fork lacks the latest updates.
 
-If your contribution conflicts with new changes made to the upstream repository then you will need to [merge changes from upstream](https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/) and create a new commit that [resolves any merge conflicts](https://help.github.com/articles/addressing-merge-conflicts/) before the contribution can be accepted.
+![](Images/MergeConflictsNotification.png)
+
+If GitHub says that your contribution conflicts with new changes made to the upstream repository then you will need to [merge changes from upstream](https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/) and create a new commit that [resolves any merge conflicts](https://help.github.com/articles/addressing-merge-conflicts/) before the contribution can be accepted.
 
 NB! Merging changes from upstream requires the use of an offline clone. This operation cannot be performed online in the GitHub web interface.
 
