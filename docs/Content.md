@@ -22,10 +22,6 @@ In general, use Markdown for text authoring whenever possible. Some features (e.
 
 More detailed guidance on common scenarios follows below.
 
-# Using HTML
-
-HTML will technically work but you should avoid it unless you truly need it. Prefer Markdown.
-
 # Basic Markdown formatting
 
 Textual content of the document uses Markdown for formatting. See [Markdown Reference](https://commonmark.org/help/) for examples.
@@ -33,6 +29,10 @@ Textual content of the document uses Markdown for formatting. See [Markdown Refe
 Various Bikeshed extensions are added to the Markdown language. You can read about the details in the [Bikeshed reference](https://tabatkins.github.io/bikeshed/#markup-shortcuts).
 
 NB! Not all Markdown features are supported (e.g. you cannot embed images with Markdown).
+
+# Using HTML
+
+HTML will technically work but you should avoid it unless you truly need it. Prefer Markdown.
 
 # Headings and references
 
@@ -182,7 +182,9 @@ Due to process limitations it is not possible to include code blocks (or other c
 
 # Recommended editor
 
-The recommended desktop app for authoring is [Visual Studio Code](https://code.visualstudio.com/). It includes Markdown preview and Git integration out of the box. The [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) enables diagram preview (requires manual setup of dependencies).
+The recommended desktop app for authoring is [Visual Studio Code](https://code.visualstudio.com/). It includes Markdown preview and Git integration out of the box.
+
+The [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) enables diagram preview (requires [Java](https://www.java.com/en/download/) and [Graphviz 2.38](https://graphviz.gitlab.io/download/)).
 
 ![](Images/VsCode-CommandPalette.png)
 
