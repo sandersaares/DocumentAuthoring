@@ -29,4 +29,6 @@ To make an editorial change, simply commit your change directly in the master br
 
 Any commit into the master branch will trigger an automated build of the document, with the outputs published to the web on a successful build.
 
-As there is no pull request associated with master branch changes, the build report with links to outputs will not be posted anywhere on GitHub. You can observe the project's Azure DevOps portal to see the build results and to obtain the published document URLs (the URL will just say `/master/` instead of `/pull/123/`).
+As there is no pull request associated with master branch changes, the build report with links to outputs will not be posted anywhere on GitHub. You can observe the project's Azure DevOps portal to see the build results.
+
+To obtain the published document URLs, simply use `/master/` where you would normally (in case of pull requests) have `/pull/123/`.
