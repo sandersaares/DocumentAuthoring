@@ -199,7 +199,7 @@ Changes made in the document owner's repository and its pull requests automatica
 Local document compilation on your PC is also relatively straightforward. The system requirements for local compilation are:
 
 * Windows 10 or a recent Linux distribution with a graphical user interface
-* Java
+* [Java](https://www.java.com/en/download/)
 * (Linux only) [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
 * (Linux only) wkhtmltopdf
 * (Linux only) graphviz
