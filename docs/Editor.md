@@ -2,6 +2,10 @@
 
 Join **#document-authoring** on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
 
+# Editor Guide
+
+Editors are the people tasked with the responsibility of reviewing contributions and merging them into the document. This page describes the basic principles of how this is done with a GitHub workflow.
+
 # Accepting contributions
 
 Contributors will create pull requests to submit their contributions for review. Ensure that each pull request gets reviewed when initially submitted and when a round of updates is submitted.
