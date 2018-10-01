@@ -16,4 +16,4 @@ Documents that use this authoring workflow are written in the Bikeshed language,
 
 The source code for this documentation pack and the associated tooling can be found on GitHub.
 
-Join #document-authoring on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+Join **#document-authoring** on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
