@@ -54,7 +54,7 @@ You will need to reference this service connection later, so remember its name.
 
 # Create build definition
 
-Clone an existing document build definition in Azure DevOps and update the following data:
+Clone an existing document build definition in Azure DevOps (e.g. the one used by [DocumentAuthoringExample](https://github.com/Dash-Industry-Forum/DocumentAuthoringExample)) and update the following data:
 
 * GitHub service connection (in Get Sources task)
 * repository name (in Get Sources task)
