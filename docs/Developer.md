@@ -14,7 +14,9 @@ The `BikeshedDocumentAuthoring` module is designed to be compatible with both Po
 
 # Automated builds
 
-Every successful automated build of a PowerShell module will publish the PowerShell module to PowerShell gallery.
+When you push changes to the PowerShell module source code, a new automated build of the affected module will be started. Every successful automated build of a PowerShell module will publish the PowerShell module to PowerShell gallery.
+
+NB! If you do not change the version number when pushing a change for a non-prerelease version the build is going to fail due to version conflict. Prerelease versions are auto-numbered to avoid conflicts.
 
 # PowerShell module versioning
 
