@@ -46,9 +46,9 @@ function New-SucceedingGitHubBuildReport() {
 
     $body = $buildReportTag + "`r`n`r`n"
     $body += "Build was successful. Outputs:`r`n`r`n"
-    $body += "* [PDF document]($pdfUrl)`r`n"
     $body += "* [HTML document]($htmlUrl)`r`n"
     $body += "* [HTML diff with target branch]($diffUrl)`r`n"
+    $body += "* [PDF document]($pdfUrl)`r`n"
     $body += "* [Download PDF + HTML as archive]($zipUrl)`r`n`r`n"
 
     $nowString = (Get-Date).ToString("u")
