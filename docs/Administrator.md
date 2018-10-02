@@ -46,12 +46,20 @@ In Azure DevOps, add a new variable group with the following variables:
 
 You will need to reference this variable group later, so remember its name.
 
+# Associate publishing point with Azure DevOps
+
+Add a new service connection to the account. Specify Generic as the type and enter the FTP/SSH connection details.
+
+You will need to reference this service connection later, so remember its name.
+
 # Create build definition
 
 Clone an existing document build definition in Azure DevOps and update the following data:
 
-* service connection (in Get Sources task)
+* GitHub service connection (in Get Sources task)
 * repository name (in Get Sources task)
+* publishing point service connection (in FTP publisher task)
+* publishing point root directory path (in FTP publisher task)
 * comment bot variable group reference (in Variables)
 * any other variables listed in the Variables tab
 
