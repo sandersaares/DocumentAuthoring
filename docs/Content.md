@@ -12,6 +12,8 @@ The following inputs are combined to create a document:
 
 This guide describes the possibilities for content authoring available with each type of input.
 
+For a full document example, take a look at the [DocumentAuthoringExample](https://github.com/Dash-Industry-Forum/DocumentAuthoringExample) repository, which uses the source code in [MyDocument.bs.md](https://raw.githubusercontent.com/Dash-Industry-Forum/DocumentAuthoringExample/master/MyDocument.bs.md) to arrive at the following output: [Example Document](https://documentauthoringtest.azurewebsites.net/DocumentAuthoringExample/master/MyDocument.html).
+
 # Authoring document text
 
 The main contents of a document are in a Bikeshed file with the extension `.bs.md`.
@@ -178,7 +180,6 @@ Alice <-- Bob: Another authentication Response
 # Restrictions on Bikeshed capabilities
 
 Due to process limitations it is not possible to include code blocks (or other content) from standalone files, even though the [Bikeshed documentation does define an "include" feature](https://tabatkins.github.io/bikeshed/#including) for this purpose. You must embed all your textual content directly in the main Bikeshed document.
-
 
 # Recommended editor
 
