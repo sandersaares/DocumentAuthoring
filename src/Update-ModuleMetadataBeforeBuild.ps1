@@ -13,7 +13,7 @@ $ErrorActionPreference = "Stop"
 # to do the modification, so let's not bother with parsing if we need to string manipulate in the end anyway.
 $manifestText = Get-Content $moduleManifestPath
 
-$searchPattern = "^\s*Prerelease = '(.+)\s*`$"
+$searchPattern = "^\s*Prerelease = '(.+)'\s*`$"
 
 $prereleaseTagLine = $manifestText | ? { $_ -match $searchPattern }
 
