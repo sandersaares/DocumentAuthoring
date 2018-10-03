@@ -96,6 +96,25 @@ Use HTML for tables.
 </table>
 ```
 
+# Defining terms
+
+Use the `<dfn>` element to define a term. You can use it anywhere but the recommended way is to use a key-value table:
+
+```text
+: <dfn>apricot</dfn>
+:: An apricot is a fruit, or the tree that bears the fruit, of several species in the genus Prunus
+: <dfn>apple</dfn>
+:: An apple is a sweet, edible fruit produced by an apple tree.
+```
+
+You can reference defined terms using special shortcut syntax:
+
+```text
+An [=apple=] a day keeps the doctor away! But remember that [=apricot|apricots=] are not the same as [=apple|apples=].
+```
+
+Use a pipe character to specify custom text for the generated link (e.g. to add an "s" at the end).
+
 # Highlighting notes
 
 Paragraphs starting with `Note: ` will be highlighted in the output document.
@@ -174,6 +193,40 @@ Alice <-- Bob: Another authentication Response
 ```
 
 ![](Images/SequenceDiagram.png)
+
+# Defining data structures
+
+If you define, for example, an XML schema or another type of data format, use the Bikeshed HTML element reference syntax to enable automatic cross-referencing.
+
+For example, consider the following XML element:
+
+```xml
+<employee id="123">
+  <name>John Jackson</name>
+<employee>
+```
+
+Use `<dfn element>employee</dfn>` to mark it as an element that may have children as attributes. The common situation is to do this in a document section heading:
+
+```text
+## <dfn element>employee</dfn> element ## {#schema-employee}
+```
+
+Then use the definition list syntax below to define its children:
+
+```text
+<dl dfn-type="element-attr" dfn-for="employee">
+
+: <dfn>id</dfn> (required, attribute, xs:integer)
+:: Employee ID.
+
+: <dfn>name</dfn> (required, xs:string)
+:: The full name of the employee.
+
+</dl>
+```
+
+You can later reference the element as `<{employee}>` and its children as `<{employee/name}>`.
 
 # Restrictions on Bikeshed capabilities
 
