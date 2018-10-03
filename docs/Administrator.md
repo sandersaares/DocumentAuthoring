@@ -14,7 +14,7 @@ To set up a new document, you need:
 * A GitHub user with admin rights in the document repository (not your own user account, to limit access to minimum required).
 * A GitHub user account with no special rights assigned, for posting automated build reports on pull requests.
 * Admin access to an Azure DevOps account to be used for build automation.
-* An web server for publishing build output PDF/HTML files and the corresponding FTP/SSH credentials.
+* A web server for publishing build output PDF/HTML files and the corresponding FTP/SSH credentials.
 
 All these resources can be reused for multiple documents, except for the repository - each document must be in a separate repository.
 
