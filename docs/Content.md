@@ -149,8 +149,6 @@ Use `<xmp>` for code blocks. Contents of this element are interpreted as plain t
 
 For syntax highlighting, specify the language with `<xmp highlight="xml">`.
 
-To add line numbers, specify `<xmp line-numbers>`.
-
 # Embedding diagrams
 
 You are recommended to generate diagrams from text files, as they enable an easier editing and review experience than images. This document authoring workflow supports diagram generation from [PlantUML files](http://plantuml.com/).
