@@ -26,7 +26,7 @@ You only need to perform this setup once per bot account. If you are reusing an 
 
 Log in to GitHub with this account and add a new Personal Access Token with the following scopes: repo, read:user, user:email, admin:repo_hook.
 
-In Azure DevOps, add a new service connection to the account. Specify GitHub as the type and enter with the token that you just created.
+In Azure DevOps, add a new service connection to the account. Specify GitHub as the type and enter the token that you just created.
 
 You will need to reference this service connection later, so remember its name.
 
