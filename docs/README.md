@@ -1,6 +1,4 @@
-# Document Authoring Kit
-
-This is a set of guides for authoring documents on GitHub.
+# Document Authoring Guide
 
 Documents that use this authoring workflow are written in the Bikeshed language, which is a mixture of Markdown and HTML. From the Bikeshed inputs, HTML and PDF outputs are automatically generated.
 

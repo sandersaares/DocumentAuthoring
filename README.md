@@ -1,4 +1,4 @@
-# Document Authoring Kit
+# Document Authoring Guide
 
 This is a set of guides for authoring documents on GitHub, plus the relevant tooling for Bikeshed compilation, PlantUML diagram generation and PDF export.
 
