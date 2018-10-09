@@ -2,7 +2,7 @@
 
 This is a set of guides for authoring documents on GitHub, plus the relevant tooling for Bikeshed compilation, PlantUML diagram generation and PDF export.
 
-[This repository is published on dashif.org](https://dashif.org/DocumentAuthoring/Contributor.html)
+[This repository is published on dashif.org](https://dashif.org/DocumentAuthoring/)
 
 Join **#document-authoring** on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
 
