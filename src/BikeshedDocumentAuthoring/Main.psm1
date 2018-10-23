@@ -212,9 +212,12 @@ function BuildDiagrams($outputPath, $diagramsPath, $externals) {
         Copy-Item $diagramsPath $outputPath -Recurse
         $diagramsOutputPath = Join-Path $outputPath ([IO.Path]::GetFileName($diagramsPath))
 
+        # -SfixCircleLabelOverlapping=true
+        # http://forum.plantuml.net/8442/regression-in-2018-03-2018-11-component-diagram-layout
+        #
         # NB! Those extra quotes in the input path are critical due to PlantUML defect.
         # Without it, the ** pattern does not work (no subdirectories will be processed).
-        java -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -timeout 60 "`"$(Join-Path $diagramsOutputPath '**.wsd')`""
+        java -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -SfixCircleLabelOverlapping=true -timeout 60 "`"$(Join-Path $diagramsOutputPath '**.wsd')`""
 
         if ($LASTEXITCODE -ne 0) {
             Write-Error "Diagram generation failed! See log above for errors."
