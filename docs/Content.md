@@ -12,7 +12,7 @@ The following inputs are combined to create a document:
 
 This guide describes the possibilities for content authoring available with each type of input.
 
-For a full document example, take a look at the [DocumentAuthoringExample](https://github.com/Dash-Industry-Forum/DocumentAuthoringExample) repository, which uses the source code in [MyDocument.bs.md](https://raw.githubusercontent.com/Dash-Industry-Forum/DocumentAuthoringExample/master/MyDocument.bs.md) to arrive at the following output: [Example Document](https://documentauthoringtest.azurewebsites.net/DocumentAuthoringExample/master/MyDocument.html).
+For a full document example, take a look at the [DocumentAuthoringExample](https://github.com/Dash-Industry-Forum/DocumentAuthoringExample) repository, which uses the source code in [MyDocument.bs.md](https://raw.githubusercontent.com/Dash-Industry-Forum/DocumentAuthoringExample/master/MyDocument.bs.md) to arrive at the following output: [Example Document](https://dashif-documents.azurewebsites.net/DocumentAuthoringExample/master/MyDocument.html).
 
 # Authoring document text
 
