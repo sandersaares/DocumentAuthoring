@@ -217,7 +217,7 @@ function BuildDiagrams($outputPath, $diagramsPath, $externals) {
         #
         # NB! Those extra quotes in the input path are critical due to PlantUML defect.
         # Without it, the ** pattern does not work (no subdirectories will be processed).
-        java -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -SfixCircleLabelOverlapping=true -timeout 60 "`"$(Join-Path $diagramsOutputPath '**.wsd')`""
+        java -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -charset utf-8 -SfixCircleLabelOverlapping=true -timeout 60 "`"$(Join-Path $diagramsOutputPath '**.wsd')`""
 
         if ($LASTEXITCODE -ne 0) {
             Write-Error "Diagram generation failed! See log above for errors."
