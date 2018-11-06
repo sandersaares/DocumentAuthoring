@@ -162,6 +162,8 @@ Example of the bibliography data format:
 
 [SpecRef accepts contributions](https://github.com/tobie/specref#updating--adding-new-references). If you do not find a document in the catalog, consider adding it to SpecRef instead of maintaining a custom bibliography section.
 
+Note: allow up to 24 hours for caches to update after a contribution is merged to the SpecRef database.
+
 # Code blocks
 
 Use `<xmp>` for code blocks. Contents of this element are interpreted as plain text, with no need for any escaping of special characters.
