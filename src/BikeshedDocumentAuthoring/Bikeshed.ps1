@@ -42,7 +42,7 @@ public sealed class Bikeshed
             else
             {
                 Console.Error.WriteLine(result);
-                throw new Exception("Bikeshed document validation failed. Fix the errors and try again. Server returned the following output: " + result);
+                throw new Exception("Bikeshed document validation failed. Adjust the document to eliminate all errors and warnings. Server returned the following output: " + result);
             }
         }
     }
