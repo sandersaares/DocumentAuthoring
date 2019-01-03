@@ -157,9 +157,9 @@ Refer to the [Visual Studio Code documentation](https://code.visualstudio.com/do
 This module provides the document compiler that you can use to transform your source files into the final output document.
 
 1. Open Windows PowerShell or PowerShell Core.
-    1. On Linux, the relevant command is `pwsh`.
+    * On Linux, the relevant command is `pwsh`.
 1. Execute `Install-Module BikeshedDocumentAuthoring -Scope CurrentUser`
-    1. You may need to answer Yes to a few prompts.
+    * You may need to answer Yes to a few prompts.
 
 # Validate the installation
 
