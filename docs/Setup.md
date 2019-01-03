@@ -19,6 +19,8 @@ You need one of the following operating systems:
 
 MacOS compatibility is unknown but theoretically likely. Please report any success or failure in Slack if you try macOS!
 
+You must have administrator-level access to the system (or ask someone with such an access level to perform the setup).
+
 # Overview
 
 The following software will be installed:
@@ -189,6 +191,7 @@ If all went well, you should now have a working document authoring environment s
         * Image->Transparent Background: True
 1. Open PowerShell or PowerShell core and navigate to the directory containing the repository files.
 1. Execute `Import-Module BikeshedDocumentAuthoring`.
+    * If you get an error saying "cannot be loaded because running scripts is disabled on this system" then run PowerShell as Administrator and execute `Set-ExecutionPolicy RemoteSigned`. After this, try again.
 1. Execute `Invoke-DocumentCompiler`.
 
 ![](Images/Compile.png)
