@@ -42,8 +42,6 @@ After cloning, perform any desired edits, commit the changes and perform a Git p
 
 In Visual Studio Code, there is a Sync button on the status bar. Click this button to perform both a pull and a push, synchronizing your offline and online copies in both directions. The screenshot above shows the sync button, with labels indicating 0 commits waiting to be pulled from the fork and 3 commits waiting to be pushed to the fork.
 
-Tip: [GitHub Desktop](https://desktop.github.com/) is an app that simplifies many common Git operations when working with an offline clone. You can freely mix GitHub Desktop, Visual Studio Code and command-line Git operations, depending on which app provides the most user-friendly experience for your desired operation.
-
 # Submit a pull request when ready
 
 Once you have adjusted the contents of your fork to include your contribution, [submit a Pull Request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) in the document owner's repository. In the pull request, reference the upstream repository as "base" and the downstream repository as "head".
@@ -77,7 +75,7 @@ The repository only contains the source code of the document and not the final P
 
 There are two methods for seeing the output of your contribution during authoring:
 
-1. Install the document compiler on your workstation and invoke the build process. Refer to the [Content Guide](Content.md) for details on invoking the compiler.
+1. Install the document compiler on your workstation and invoke the build process. Refer to the [environment setup instructions](Content.md) for details on setting up and invoking the compiler.
 1. Create a pull request even before your contribution is ready. Upon pull request creation or update, an automated build process will generate the outputs and post links in the pull request comments. **Mark the pull request as work in progress in the pull request description**, so it does not get prematurely reviewed or rejected!
 
 # How do I create multiple independent contributions?

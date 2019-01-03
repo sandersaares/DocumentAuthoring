@@ -2,15 +2,14 @@
 
 Documents that use this authoring workflow are written in the Bikeshed language, which is a mixture of Markdown and HTML. From the Bikeshed inputs, HTML and PDF outputs are automatically generated.
 
-[The Content Guide](Content.md) describes basic features of document content creation that exist.
+This guide is split into individual chapters, each focusing on a part of the workflow:
 
-[The Contributor Guide](Contributor.md) describes how to contribute new content or changes to an existing document.
-
-[The Editor Guide](Editor.md) describes how to review and merge contributions, how to perform editorial changes directly and how to publish new versions of the document.
-
-[The Administrator Guide](Administrator.md) describes how to set up a new document that is to be authored following this guide.
-
-[The Developer Guide](Developer.md) describes the inner workings of the automation and tooling relevant to the document authoring processes.
+* [How to set everything up on your PC](Setup.md)
+* [How to write documents](Content.md)
+* [How to submit a contribution](Contributor.md)
+* [How to accept and publish contributions](Editor.md)
+* [How to set up GitHub automation](Administrator.md)
+* [How to modify the GitHub and compiler automation](Developer.md)
 
 The source code for this documentation pack and the associated tooling can be found on GitHub.
 

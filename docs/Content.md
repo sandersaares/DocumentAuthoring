@@ -2,13 +2,14 @@
 
 Join **#document-authoring** on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
 
-# Content Guide
+# How to write documents
 
 The following inputs are combined to create a document:
 
 * Document text.
 * Images.
 * Diagrams generated from PlantUML text files.
+* Diagrams manually exported from yEd files.
 
 This guide describes the possibilities for content authoring available with each type of input.
 
@@ -16,25 +17,15 @@ For a full document example, take a look at the [DocumentAuthoringExample](https
 
 # Authoring document text
 
-The main contents of a document are in a Bikeshed file with the extension `.bs.md`.
+The main contents of a document are in a Bikeshed file with the extension `.bs.md`. The format of the document is a mixture of HTML, Markdown and Bikeshed.
 
-The format of the document is a mixture of HTML and Markdown plus some custom elements defined by the Bikeshed document format for describing metadata and data type definitions.
+In general, use Markdown for text authoring whenever possible. Some features (e.g. images and tables) require you to use HTML. Experiment to find out what works best!
 
-In general, use Markdown for text authoring whenever possible. Some features (e.g. images and tables) require you to use HTML. Defining data structures will require you to use specialized Bikeshed syntax to ensure proper referencing behavior.
+# Basic formatting
 
-More detailed guidance on common scenarios follows below.
+[Markdown Reference](https://commonmark.org/help/) provides examples on basic formatting.
 
-# Basic Markdown formatting
-
-Textual content of the document uses Markdown for formatting. See [Markdown Reference](https://commonmark.org/help/) for examples.
-
-Various Bikeshed extensions are added to the Markdown language. You can read about the details in the [Bikeshed reference](https://tabatkins.github.io/bikeshed/#markup-shortcuts).
-
-NB! Not all Markdown features are supported (e.g. you cannot embed images with Markdown).
-
-# Using HTML
-
-HTML will technically work but you should avoid it unless you truly need it. Prefer Markdown.
+NB! Not all Markdown features are supported (e.g. you cannot embed images with Markdown). Use HTML when you have to.
 
 # Headings and references
 
@@ -48,10 +39,17 @@ Use the anchor to reference the heading elsewhere in the text. The link will aut
 
 ```text
 VR solutions often benefit from XML-enabled machine learning,
-as described in the [[#powering-ml-with-xml]] chapter.
+as described in [[#powering-ml-with-xml]].
 ```
 
 **Always add an anchor to every heading**, even those you do not currently reference - other people might want to link to them later!
+
+You can specify custom text for a reference using the pipe character. By default, it is simply the heading text.
+
+```text
+Machine learning solutions can gain extra venture capital
+funding by [[#powering-ml-with-xml|incorporating virtual reality technologies]].
+```
 
 # Inserting images
 
@@ -64,7 +62,7 @@ Use HTML to insert images. The recommended format is:
 </figure>
 ```
 
-You must place all images in the `Images/` directory (subdirectories are allowed).
+You must place all static images and manually exported diagrams in the `Images/` directory (subdirectories are allowed).
 
 # Inserting links to websites
 
@@ -79,7 +77,7 @@ Use Markdown link syntax for links to the web.
 Use HTML for tables.
 
 ```html
-<!-- class=def is a builtin style that makes for nice looking tables -->
+<!-- class=def is a built-in style. It is optional but looks nice. -->
 <table class="def">
 	<tr>
 		<th>Usage</th>
@@ -98,7 +96,7 @@ Use HTML for tables.
 
 # Defining terms
 
-Use the `<dfn>` element to define a term. You can use it anywhere but the recommended way is to use a key-value table:
+Use the `<dfn>` element to define a term. You can use it anywhere in text but a common approach is to use a key-value table:
 
 ```text
 : <dfn>apricot</dfn>
@@ -107,23 +105,27 @@ Use the `<dfn>` element to define a term. You can use it anywhere but the recomm
 :: An apple is a sweet, edible fruit produced by an apple tree.
 ```
 
-You can reference defined terms using special shortcut syntax:
+You can reference defined terms as follows:
 
 ```text
-An [=apple=] a day keeps the doctor away! But remember that [=apricot|apricots=] are not the same as [=apple|apples=].
+An [=apple=] a day keeps the doctor away! But remember that [=apricots=] are not the same as [=apples=].
 ```
 
-Use a pipe character to specify custom text for the generated link (e.g. to add an "s" at the end).
+Singular/plural matching is built-in but you can use a pipe character to specify custom text for the generated link if you need to.
+
+```text
+Not every [=apple|fruit of the apple tree=] is red.
+```
 
 # Highlighting notes
 
-Paragraphs starting with `Note: ` will be highlighted in the output document.
+Paragraphs starting with `Note: ` and `Advisement: ` will be highlighted in the output document. Notes are considered informative, whereas advisements are normative.
 
 ```
 Note: Bees can fly up to two miles to find nectar and pollen.
-```
 
-For additional information about special block formatting that applies in this and similar scenarios, see the [Bikeshed documentation](https://tabatkins.github.io/bikeshed/#notes-etc).
+Advisement: Bee stings hurt!
+```
 
 # References to external documents
 
@@ -170,9 +172,9 @@ Use `<xmp>` for code blocks. Contents of this element are interpreted as plain t
 
 For syntax highlighting, specify the language with `<xmp highlight="xml">`.
 
-# Embedding diagrams
+# Embedding diagrams - PlantUML
 
-You are recommended to generate diagrams from text files, as they enable an easier editing and review experience than images. This document authoring workflow supports diagram generation from [PlantUML files](http://plantuml.com/).
+This document authoring workflow supports diagram generation from [PlantUML files](http://plantuml.com/).
 
 Diagram files have the `.wsd` extension. All diagrams must be placed in the `Diagrams/` directory (subdirectories are allowed).
 
@@ -195,6 +197,18 @@ Alice <-- Bob: Another authentication Response
 ```
 
 ![](Images/SequenceDiagram.png)
+
+# Embedding diagrams - yEd/Visio/other
+
+If you use static diagrams, exported from yEd or Visio, simply put the yEd or Visio files in the Images directory alongside the exported images.
+
+NB! Do not use the Diagrams directory for static diagrams - it is only for PlantUML diagrams.
+
+For yEd image export, use the following settings:
+
+* Format: PNG
+* Clipping->Margin: 5
+* Image->Transparent Background: True
 
 # Defining data structures
 
@@ -229,43 +243,3 @@ Then use the definition list syntax below to define its children:
 ```
 
 You can later reference the element as `<{employee}>` and its children as `<{employee/name}>`.
-
-# Restrictions on Bikeshed capabilities
-
-Due to process limitations it is not possible to include code blocks (or other content) from standalone files, even though the [Bikeshed documentation does define an "include" feature](https://tabatkins.github.io/bikeshed/#including) for this purpose. You must embed all your textual content directly in the main Bikeshed document.
-
-# Recommended editor
-
-The recommended desktop app for authoring is [Visual Studio Code](https://code.visualstudio.com/). It includes Markdown preview and [Git integration](https://code.visualstudio.com/docs/editor/versioncontrol) out of the box.
-
-The [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) enables diagram preview (requires [Java](https://www.java.com/en/download/) and [Graphviz 2.38](https://graphviz.gitlab.io/download/)).
-
-![](Images/VsCode-CommandPalette.png)
-
-Tip: Press F1 in Visual Studio Code to open the command palette. From there you can easily access advanced product features.
-
-You do not need a desktop app for simple contributions - the GitHub web interface can serve basic needs sufficiently well.
-
-# Compiling the document
-
-Changes made in the document owner's repository and its pull requests automatically trigger a build process that generates and publishes the updated output documents on the web and links them in pull request comments.
-
-Local document compilation on your PC is also relatively straightforward. The system requirements for local compilation are:
-
-* Windows 10 or a recent Linux distribution with a graphical user interface
-* [Java](https://www.java.com/en/download/)
-* (Linux only) [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
-* (Linux only) wkhtmltopdf
-* (Linux only) graphviz
-
-All of the commands below are to be executed in a PowerShell console (`pwsh` on Linux).
-
-To install the compiler, execute `Install-Module BikeshedDocumentAuthoring -Scope CurrentUser`. You can later update it with `Update-Module BikeshedDocumentAuthoring`.
-
-To compile the document:
-
-1. Navigate to the directory that contains the document
-1. Execute `Import-Module BikeshedDocumentAuthoring`
-1. Execute `Invoke-DocumentCompiler`
-
-After successful compilation, the output will be in an `Output/` subdirectory.
