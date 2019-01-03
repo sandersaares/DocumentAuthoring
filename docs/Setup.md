@@ -44,7 +44,7 @@ If you already have Java installed, skip this chapter. You can test by executing
 
 On Windows, the preferred version of Java is OpenJDK 11.
 
-1. Download the latest version 11 .MSI file from https://github.com/ojdkbuild/ojdkbuild/releases (the filename should be similar to `java-11-openjdk-11.0.1.13-1.ojdkbuild.windows.x86_64.msi`).
+1. [Download the latest version 11 .MSI file](https://github.com/ojdkbuild/ojdkbuild/releases) (the filename should be similar to `java-11-openjdk-11.0.1.13-1.ojdkbuild.windows.x86_64.msi`).
 1. Execute this MSI file and follow the displayed instructions to finish installing Java.
     1. If you get a SmartScreen warning popup, click "More Info" and "Run anyway" to bypass it.
     1. Leave all the options in the installer at their default values.
