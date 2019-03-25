@@ -33,6 +33,11 @@ function Invoke-DocumentCompiler() {
     Write-Verbose "Expending to find images in $imagesPath."
 
     PrepareOutputDirectory $outputPath
+
+    # Build the Bikeshed document first, as that is the most likely place for any errors to come,
+    # so we want fast feedback for the user (without doing all the image generation before every failure).
+    $htmlFilePath = BuildBikeshedDocument $outputPath $inputFile $basename $force
+
     CopyImages $outputPath $imagesPath
 
     # We will build all diagrams that exist in a Diagrams folder relative to the input document.
@@ -40,7 +45,6 @@ function Invoke-DocumentCompiler() {
 
     BuildDiagrams $outputPath $diagramsPath $externals
 
-    $htmlFilePath = BuildBikeshedDocument $outputPath $inputFile $basename $force
     $pdfFilePath = BuildPdf $outputPath $htmlFilePath $basename $externals
     $zipFilePath = BuildZip $outputPath $basename
 
