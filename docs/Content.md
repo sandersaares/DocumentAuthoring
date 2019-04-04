@@ -212,7 +212,7 @@ For yEd image export, use the following settings:
 
 # Including external files
 
-You can use `#include "filename.inc.md` to include text from other files into the main document. This statement must be the only thing on the line and is exactly equivalent to copy-pasting the referenced file into the current file.
+You can use `#include "filename.inc.md"` to include text from other files into the main document. This statement must be the only thing on the line and is exactly equivalent to copy-pasting the referenced file into the current file.
 
 The file extension must be `.inc.md` and there can be no special characters in the path. Subdirectories are allowed.
 
