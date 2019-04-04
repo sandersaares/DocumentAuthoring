@@ -112,7 +112,7 @@ function PrepareExternals() {
     }
 
     # Validate that PlantUML can use the installed Graphviz dot.exe without issues.
-    $stdout = java -jar "$plantuml" -graphvizdot "$graphvizdot" -testdot
+    $stdout = java.exe -jar "$plantuml" -graphvizdot "$graphvizdot" -testdot
 
     if ($stdout -match "Error: *") {
         $stdout | Out-Host
@@ -154,7 +154,7 @@ function ResolveInputFile($path) {
             Write-Error "Did not find any $defaultFileExtension file in current directory to use as input."
         }
         elseif ($candidates.Count -ne 1) {
-            $candidateNames = [string]::Join(", ", ($candidates | % { $_.Name }))
+            $candidateNames = [string]::Join(", ", ($candidates | ForEach-Object { $_.Name }))
 
             Write-Error "Expected to find exactly 1 $defaultFileExtension file in current directory to use as input. Instead found $($candidates.Count): $candidateNames"
         }
@@ -221,7 +221,7 @@ function BuildDiagrams($outputPath, $diagramsPath, $externals) {
         #
         # NB! Those extra quotes in the input path are critical due to PlantUML defect.
         # Without it, the ** pattern does not work (no subdirectories will be processed).
-        java -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -charset utf-8 -SfixCircleLabelOverlapping=true -timeout 60 "`"$(Join-Path $diagramsOutputPath '**.wsd')`""
+        java.exe -jar "$($externals.plantuml)" -graphvizdot "$($externals.dot)" -charset utf-8 -SfixCircleLabelOverlapping=true -timeout 60 "`"$(Join-Path $diagramsOutputPath '**.wsd')`""
 
         if ($LASTEXITCODE -ne 0) {
             Write-Error "Diagram generation failed! See log above for errors."
@@ -233,24 +233,64 @@ function BuildDiagrams($outputPath, $diagramsPath, $externals) {
     }
 }
 
+# Pre-processes the document to resolve any preprocessor directives like #include
+
+function PreProcessBikeshedDocument($inputFilePath, $outputFilePath) {
+    $contents = Get-Content $inputFilePath -Encoding UTF8
+    $processedContents = @()
+
+    foreach ($line in $contents) {
+        if (!$line.StartsWith("#include ")) {
+            # Regular line.
+            $processedContents += $line
+            continue
+        }
+
+        $includeWhat = $line.Substring("#include ".Length).Trim('"')
+
+        # WOOP WOOP THIS IS THE POLICE! Make sure documents don't try to include files
+        # that are higher up the path from the document's own directory.
+
+        if ($includeWhat -inotmatch "^[a-z0-9]+[a-z0-9/\\]*\.inc\.md$") {
+            Write-Error "For security reasons, names of files merged via #include must match either the pattern abc.inc.md or subdirectory/abc.inc.mc with no special characters. Disallowed include path: $includeWhat"
+        }
+
+        if (!(Test-Path $includeWhat -PathType Leaf)) {
+            Write-Error "File referenced by #include statement was not found: $includeWhat"
+        }
+
+        # No recursive includes - just one layer.
+        $processedContents += Get-Content $includeWhat -Encoding UTF8
+    }
+
+    [IO.File]::WriteAllLines($outputFilePath, $processedContents)
+}
+
 # Builds the document and returns the path to the resulting HTML file.
 function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
     $outputFilePath = Join-Path $outputPath ($basename + ".html")
 
+    $tempFilePath = [IO.Path]::GetTempFileName()
+
     try {
+        Write-Host "Pre-processing Bikeshed document"
+        PreProcessBikeshedDocument $inputFile.FullName $tempFilePath
+
         if ($force) {
             Write-Host "Building Bikeshed document."
-            [Bikeshed]::Compile($inputFile.FullName, $true) | Out-File $outputFilePath
+            [Bikeshed]::Compile($tempFilePath, $true) | Out-File $outputFilePath
         }
         else {
             # First validate, because build only fails on super critical errors.
             Write-Host "Validating Bikeshed document."
 
-            [Bikeshed]::Validate($inputFile.FullName)
+            [Bikeshed]::Validate($tempFilePath)
 
             Write-Host "Building Bikeshed document."
-            [Bikeshed]::Compile($inputFile.FullName, $false) | Out-File $outputFilePath
+            [Bikeshed]::Compile($tempFilePath, $false) | Out-File $outputFilePath
         }
+
+        Remove-Item $tempFilePath
     }
     catch {
         if ($env:TF_BUILD) {
@@ -260,6 +300,8 @@ function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
             $message = $_.Exception.Message.Replace("`r", "").Replace("`n", "")
             Write-Host "##vso[task.setvariable variable=bikeshedError;]$message"
         }
+
+        Remove-Item $tempFilePath -ErrorAction Ignore
 
         # Just let it bubble up. There is no way to get good error messages in build summary as far as I can tell.
         # No matter what you do with the error, it will still say "PowerShell exited with code '1'." and force
