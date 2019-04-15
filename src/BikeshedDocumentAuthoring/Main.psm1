@@ -251,8 +251,8 @@ function PreProcessBikeshedDocument($inputFilePath, $outputFilePath) {
         # WOOP WOOP THIS IS THE POLICE! Make sure documents don't try to include files
         # that are higher up the path from the document's own directory.
 
-        if ($includeWhat -inotmatch "^[a-z0-9-_]+[a-z0-9/\\-_]*\.inc\.md$") {
-            Write-Error "For security reasons, names of files merged via #include must match either the pattern abc.inc.md or subdirectory/abc.inc.mc with no special characters. Disallowed include path: $includeWhat"
+        if ($includeWhat -inotmatch "^[a-z0-9-_]+[a-z0-9/\\-_]*(\.inc\.md|\.json)$") {
+            Write-Error "For security reasons, names of files merged via #include must match either the pattern filename.inc.md or filename.json with no special characters. Subdirectories are permitted. Tested include path: $includeWhat"
         }
 
         if (!(Test-Path $includeWhat -PathType Leaf)) {
