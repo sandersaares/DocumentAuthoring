@@ -13,7 +13,12 @@ function Invoke-DocumentCompiler() {
         # If provided, will ignore Bikeshed syntax errors and output whatever HTML it can.
         # This is useful for troubleshooting because Bikeshed errors can sometimes be rather vague.
         [Parameter()]
-        [switch]$force
+        [switch]$force,
+
+        # If provided, will dump preprocessed file to current directory as "Preprocessed.bs.md.tmp"
+        # Useful for debugging compile errors that might get hidden by preprocessing.
+        [Parameter()]
+        [switch]$debugDump
     )
 
     $externals = PrepareExternals
@@ -36,7 +41,7 @@ function Invoke-DocumentCompiler() {
 
     # Build the Bikeshed document first, as that is the most likely place for any errors to come,
     # so we want fast feedback for the user (without doing all the image generation before every failure).
-    $htmlFilePath = BuildBikeshedDocument $outputPath $inputFile $basename $force
+    $htmlFilePath = BuildBikeshedDocument $outputPath $inputFile $basename $force $debugDump
 
     CopyImages $outputPath $imagesPath
 
@@ -267,14 +272,20 @@ function PreProcessBikeshedDocument($inputFilePath, $outputFilePath) {
 }
 
 # Builds the document and returns the path to the resulting HTML file.
-function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force) {
+function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force, $debugDump) {
     $outputFilePath = Join-Path $outputPath ($basename + ".html")
 
     $tempFilePath = [IO.Path]::GetTempFileName()
 
     try {
-        Write-Host "Pre-processing Bikeshed document"
+        Write-Host "Preprocessing Bikeshed document"
         PreProcessBikeshedDocument $inputFile.FullName $tempFilePath
+
+        if ($debugDump) {
+            $preprocessedFilePath = [IO.Path]::GetFullPath("Preprocessed.bs.md.tmp")
+            Copy-Item $tempFilePath $preprocessedFilePath -Force | Out-Null
+            Write-Host "Preprocessed file written to $preprocessedFilePath"
+        }
 
         if ($force) {
             Write-Host "Building Bikeshed document."
