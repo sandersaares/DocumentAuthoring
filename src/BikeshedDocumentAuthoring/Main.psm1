@@ -282,7 +282,7 @@ function BuildBikeshedDocument($outputPath, $inputFile, $basename, $force, $debu
         PreProcessBikeshedDocument $inputFile.FullName $tempFilePath
 
         if ($debugDump) {
-            $preprocessedFilePath = [IO.Path]::GetFullPath("Preprocessed.bs.md.tmp")
+            $preprocessedFilePath = [IO.Path]::GetFullPath("Preprocessed.tmp.md")
             Copy-Item $tempFilePath $preprocessedFilePath -Force | Out-Null
             Write-Host "Preprocessed file written to $preprocessedFilePath"
         }
