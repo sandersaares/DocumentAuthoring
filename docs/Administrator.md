@@ -68,3 +68,20 @@ After verifying that all the data is valid for the new document, save the build 
 # Assign editors
 
 Give the editors write-level collaborator access to the document repository.
+
+# Configure publishing website
+
+Consider disabling caching and enabling directory browsing on the website you use to host the documents. This ensures that updates are seen immediately and that the directory structure can be easily browsed without having to look up URLs.
+
+If you use Azure Websites then the following web.config file in the root directory will accomplish this:
+
+```xml
+<configuration>
+   <system.webServer>
+      <staticContent>
+         <clientCache cacheControlMode="DisableCache" />
+      </staticContent>
+	  <directoryBrowse enabled="true" />
+   </system.webServer>
+</configuration>
+```
