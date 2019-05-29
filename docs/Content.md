@@ -74,7 +74,9 @@ Use Markdown link syntax for links to the web.
 
 # Tables
 
-Use HTML for tables. Enclose tables in `figure` tags for automatic numbering.
+Use HTML for tables.
+
+Enclose tables in `figure` tags and provide a caption using `figcaption` to enable automatic numbering.
 
 ```html
 <figure>
