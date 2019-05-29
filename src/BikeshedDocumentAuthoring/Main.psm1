@@ -268,6 +268,10 @@ function PreProcessBikeshedDocument($inputFilePath, $outputFilePath) {
         $processedContents += Get-Content $includeWhat -Encoding UTF8
     }
 
+    # Append MathJax include for formula support.
+    $processedContents += ""
+    $processedContents += '<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>'
+
     [IO.File]::WriteAllLines($outputFilePath, $processedContents)
 }
 

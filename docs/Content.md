@@ -246,6 +246,19 @@ For yEd image export, use the following settings:
 * Clipping->Margin: 5
 * Image->Transparent Background: True
 
+# Embedding formulas
+
+You can use TeX syntax for formulas. Surround inline content with `\(` and `\)` and block content with `$$`.
+
+```text
+When \(a \ne 0\) there are two solutions to \(ax^2 + bx + c = 0\)
+and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+```
+
+The above produces the following output:
+
+![](Images/Math.png)
+
 # Including external files
 
 You can use `#include "filename.inc.md"` to include text from other files into the main document. This statement must be the only thing on the line and is exactly equivalent to copy-pasting the referenced file into the current file.
