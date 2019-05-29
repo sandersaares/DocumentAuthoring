@@ -161,6 +161,8 @@ This module provides the document compiler that you can use to transform your so
 1. Execute `Install-Module BikeshedDocumentAuthoring -Scope CurrentUser`
     * You may need to answer Yes to a few prompts.
 
+If you encounter failures on Windows during installation, you may need to execute the PowerShell command `Set-ExecutionPolicy RemoteSigned` to enable PowerShell script execution. The default configuration is to block all scripts, though this is often already corrected by organization policy.
+
 # Validate the installation
 
 If all went well, you should now have a working document authoring environment set up! Let's validate it by downloading and compiling an example document.
