@@ -74,24 +74,58 @@ Use Markdown link syntax for links to the web.
 
 # Tables
 
-Use HTML for tables.
+Use HTML for tables. Enclose tables in `figure` tags for automatic numbering.
 
 ```html
-<!-- class=def is a built-in style. It is optional but looks nice. -->
-<table class="def">
-	<tr>
-		<th>Usage</th>
-		<th>Algorithm</th>
-	</tr>
-	<tr>
-		<td>Content Key wrapping</td>
-		<td>AES256-CBC, PKCS #7 padding</td>
-	</tr>
-	<tr>
-		<td>Encrypted key MAC</td>
-		<td>HMAC-SHA512</td>
-	</tr>
-</table>
+<figure>
+	<table class="data">
+		<thead>
+			<tr>
+				<th>Animal
+				<th>Feet
+				<th>Average height
+		<tbody>
+			<tr>
+				<td>Duck
+				<td>2
+				<td>1 foot
+			<tr>
+				<td>Cow
+				<td>4
+				<td>1.612 meters
+			<tr>
+				<td>Cat
+				<td>4
+				<td>Not too much
+	</table>
+	<figcaption>Listing of critical animal measurements.</figcaption>
+</figure>
+```
+
+The `data` class is a builtin table style suitable for presenting data. An alternative builtin style you can use is the `def` class.
+
+# Referencing illustrations and tables
+
+Add an ID to the `figure` element and reference it in a hyperlink.
+
+Example of reference target:
+
+```html
+<figure id="animal-facts">
+  ...
+</figure>
+```
+
+Example hyperlink from same document:
+
+```html
+Memorize the <a href="#animal-facts">basic facts on important animals</a> before continuing.
+```
+
+Example hyperlink from an external document:
+
+```html
+Memorize the <a href="https://exampler.com/mydocument.html#animal-facts">basic facts on important animals</a> before continuing.
 ```
 
 # Defining terms
