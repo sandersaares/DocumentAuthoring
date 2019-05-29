@@ -270,7 +270,7 @@ function PreProcessBikeshedDocument($inputFilePath, $outputFilePath) {
 
     # Append MathJax include for formula support.
     $processedContents += ""
-    $processedContents += '<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>'
+    $processedContents += '<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=default"></script>'
 
     [IO.File]::WriteAllLines($outputFilePath, $processedContents)
 }
