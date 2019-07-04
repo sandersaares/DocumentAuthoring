@@ -191,6 +191,10 @@ function PrepareOutputDirectory($outputPath) {
     if (Test-Path $outputPath) {
         # Do not delete the directory itself, just contents.
         # This avoids some file locking issues.
+
+        # Ignore errors the first time.
+        Get-ChildItem -Path $outputPath | Remove-Item -Force -Recurse -ErrorAction Ignore
+        # Try it one more time to avoid even more file locking issues.
         Get-ChildItem -Path $outputPath | Remove-Item -Force -Recurse
     }
 
