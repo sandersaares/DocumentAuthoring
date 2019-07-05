@@ -194,8 +194,12 @@ function PrepareOutputDirectory($outputPath) {
 
         # Ignore errors the first time.
         Get-ChildItem -Path $outputPath | Remove-Item -Force -Recurse -ErrorAction Ignore
-        # Try it one more time to avoid even more file locking issues.
-        Get-ChildItem -Path $outputPath | Remove-Item -Force -Recurse
+
+        # If any file remains, wait a bit and try it one more time to avoid even more file locking issues.
+        if (Get-ChildItem -Path $outputPath) {
+            Start-Sleep -Seconds 1
+            Get-ChildItem -Path $outputPath | Remove-Item -Force -Recurse
+        }
     }
 
     [IO.Directory]::CreateDirectory($outputPath) | Out-Null
