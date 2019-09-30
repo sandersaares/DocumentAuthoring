@@ -128,7 +128,7 @@ yEd is a diagram editor for basic boxes-and-arrows style diagrams.
 
 [Download the appropriate yEd installer](https://www.yworks.com/downloads#yEd) and follow the installer's instructions.
 
-Depending on your operating system, there are multiple different yEd installers available. Select the one that says "Includes a suitable Java 10 JRE" when multiple options are available.
+Depending on your operating system, there are multiple different yEd installers available. Select the one from the "yEd Graph Editor" chapter that says "Includes a suitable Java 11 JRE" when multiple options are available.
 
 The default styling of yEd diagrams is "unique". We will adjust that by importing some custom themed elements. [Download and extract yEdPalettes.zip](yEdPalettes.zip) in a temporary location.
 
