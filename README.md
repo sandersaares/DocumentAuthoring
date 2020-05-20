@@ -4,7 +4,7 @@ This is a set of guides for authoring documents on GitHub, plus the relevant too
 
 [This repository is published on dashif.org](https://dashif.org/DocumentAuthoring/)
 
-[Join DASH-IF on Slack!](https://join.slack.com/t/dashif/shared_invite/zt-egme869x-JH~UPUuLoKJB26fw7wj3Gg))
+[Join DASH-IF on Slack!](https://join.slack.com/t/dashif/shared_invite/zt-egme869x-JH~UPUuLoKJB26fw7wj3Gg)
 
 # Repository contents
 
