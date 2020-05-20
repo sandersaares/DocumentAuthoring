@@ -13,4 +13,4 @@ This guide is split into individual chapters, each focusing on a part of the wor
 
 The source code for this documentation pack and the associated tooling can be found on GitHub.
 
-Join **#document-authoring** on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+[Join DASH-IF on Slack!](https://join.slack.com/t/dashif/shared_invite/zt-egme869x-JH~UPUuLoKJB26fw7wj3Gg)

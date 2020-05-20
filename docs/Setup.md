@@ -1,6 +1,6 @@
 [Back to table of contents](README.md)
 
-Join **#document-authoring** on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+[Join DASH-IF on Slack!](https://join.slack.com/t/dashif/shared_invite/zt-egme869x-JH~UPUuLoKJB26fw7wj3Gg)
 
 # Local environment setup
 
@@ -34,7 +34,7 @@ The following software will be installed:
 * Graphviz - a prerequisite for PlantUML.
 * wkhtmltopdf - a prerequisite for the document compiler.
 
-The following chapters guide you through setting up all of this. You may need to slightly deviate from these instructions if your working environment is unusual. Join **#document-authoring** on Slack for live assistance: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+The following chapters guide you through setting up all of this. You may need to slightly deviate from these instructions if your working environment is unusual.
 
 # Install Java
 
@@ -207,7 +207,7 @@ The most complex part of the document authoring workflow is the usage of Git to 
 1. Obscure and difficult to understand terminology used by Git.
 1. Detecting and resolving conflicts in the work of multiple authors.
 
-Read up on how Git workflows operate and try to survive the barrage of surprises it throws at you. Join **#document-authoring** on Slack for live assistance: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+Read up on how Git workflows operate and try to survive the barrage of surprises it throws at you.
 
 # Software updates
 

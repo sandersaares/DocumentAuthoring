@@ -1,6 +1,6 @@
 [Back to table of contents](README.md)
 
-Join **#document-authoring** on Slack: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+[Join DASH-IF on Slack!](https://join.slack.com/t/dashif/shared_invite/zt-egme869x-JH~UPUuLoKJB26fw7wj3Gg)
 
 # Administrator Guide
 
